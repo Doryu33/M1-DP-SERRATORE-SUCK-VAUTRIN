@@ -1,0 +1,25 @@
+{
+  "name": "m1-dp-serratore-suck-vautrin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodemon app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN.git"
+  },
+  "author": "Alexandre Serratore, Hugo Suck, Guillaume Vautrin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN/issues"
+  },
+  "homepage": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
