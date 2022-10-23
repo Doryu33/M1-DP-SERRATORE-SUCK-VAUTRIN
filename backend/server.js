@@ -14,7 +14,7 @@ const app = express();
 du frontend */
 app.use(express.static('frontend/resources',
     {
-        etag: false
+        etag: false, // Permet d'indiquer au navigateur de ne pas garder en cache les fichiers statiques
     })
 );
 
@@ -26,10 +26,7 @@ app.use(express.static('frontend/resources',
 app.use('/users', userRouter);
 
 
-// Traitement des requêtes lancés.
-app.listen(PORT, () => console.log(`Server started (port ${PORT})`))
-
 
 // Export du module vers app.js, à la racine du projet
-export default app;
+export { app, PORT };
 
