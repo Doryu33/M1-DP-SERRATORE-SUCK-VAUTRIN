@@ -1,3 +1,45 @@
 {
-  "users": []
+  "users": {
+    "10": {
+      "username": null,
+      "email": null,
+      "name": null,
+      "preferences": [],
+      "appointments": []
+    },
+    "116135126372": {
+      "username": null,
+      "email": null,
+      "name": null,
+      "preferences": [],
+      "appointments": []
+    },
+    "7713969650": {
+      "username": null,
+      "email": null,
+      "name": null,
+      "preferences": [],
+      "appointments": [],
+      "user": null
+    },
+    "88927106674": {
+      "username": null,
+      "password": null,
+      "email": null,
+      "name": null,
+      "preferences": [],
+      "appointments": [],
+      "user": {
+        "username": "Test"
+      }
+    },
+    "11993279277": {
+      "username": "Test",
+      "password": null,
+      "email": null,
+      "name": null,
+      "preferences": [],
+      "appointments": []
+    }
+  }
 }
