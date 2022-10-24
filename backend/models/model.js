@@ -22,18 +22,20 @@ export async function initialize(){
             throw new Error('Erreur: Json Object est vide')
         } 
     }catch (err){
-        db.data = { users: [] };
+        db.data = { users: {} };
         await db.write();
     }
     
     return db;
 }
 
-
+/**
+ * Génère un identifiant unique 
+ * @returns ID
+ */
 export function generateID(){
     let generateNumber = () => {
-        return Math.floor((1 + Math.random()) * 0x10101)
-            .toString();
+        return Math.floor((1 + Math.random()) * 0x10101).toString();
       }
     return generateNumber()+generateNumber();
 }
