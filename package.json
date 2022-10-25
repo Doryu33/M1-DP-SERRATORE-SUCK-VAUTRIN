@@ -19,7 +19,7 @@
   "homepage": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "lowdb": "^5.0.3"
+    "lowdb": "^5.0.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

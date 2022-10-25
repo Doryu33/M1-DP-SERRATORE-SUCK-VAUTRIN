@@ -1,32 +1,32 @@
 {
   "users": {
     "10": {
-      "username": null,
-      "email": null,
-      "name": null,
+      "username": "",
+      "email": "",
+      "name": "",
       "preferences": [],
       "appointments": []
     },
     "116135126372": {
-      "username": null,
-      "email": null,
-      "name": null,
+      "username": "",
+      "email": "",
+      "name": "",
       "preferences": [],
       "appointments": []
     },
     "7713969650": {
-      "username": null,
-      "email": null,
-      "name": null,
+      "username": "",
+      "email": "",
+      "name": "",
       "preferences": [],
       "appointments": [],
-      "user": null
+      "user": ""
     },
     "88927106674": {
-      "username": null,
-      "password": null,
-      "email": null,
-      "name": null,
+      "username": "",
+      "password": "",
+      "email": "",
+      "name": "",
       "preferences": [],
       "appointments": [],
       "user": {
@@ -35,9 +35,9 @@
     },
     "11993279277": {
       "username": "Test",
-      "password": null,
-      "email": null,
-      "name": null,
+      "password": "",
+      "email": "",
+      "name": "",
       "preferences": [],
       "appointments": []
     }

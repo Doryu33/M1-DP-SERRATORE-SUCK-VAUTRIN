@@ -18,6 +18,9 @@ router.get('/all', userController.getAllUsers);
  * site.com/users/12121235321 pour obtenir les données de l'utilisateur à l'identifiant correspondant.
  * on retrouve 'id' dans req.params.id de la fonction userController.loadUserData (req, res)
  */
-router.get('/:id', userController.loadUserData);
+router.get('/id/:id', userController.loadUserData);
+
+
+router.get('/login', userController.login);
 
 export default router;
