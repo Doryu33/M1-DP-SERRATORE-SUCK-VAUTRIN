@@ -10,7 +10,7 @@ export default class CalendarModel {
 
     async addAppointment(userId, rdv){
 
-    }
+    } 
 
 
 

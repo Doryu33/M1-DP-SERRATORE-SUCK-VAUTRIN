@@ -27,6 +27,6 @@ app.use('/users', userRouter);
 
 
 
-// Export du module vers app.js, à la racine du projet
-export { app, PORT };
+// Lance l'écoute
+app.listen(PORT, () => console.log(`Server started (port ${PORT})`));
 

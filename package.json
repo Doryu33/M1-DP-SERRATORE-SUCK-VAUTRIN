@@ -2,10 +2,11 @@
   "name": "m1-dp-serratore-suck-vautrin",
   "version": "1.0.0",
   "description": "",
-  "main": "nodemon app.js",
+  "main": "concurrently  -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" ",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently  -c \"auto\" --kill-others --kill-others-on-fail \"cd backend && npm run dev\" \"cd frontend && npm run dev\" ",
+    "start": "concurrently  -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" "
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,6 @@
   },
   "homepage": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN#readme",
   "dependencies": {
-    "express": "^4.18.2",
-    "lowdb": "^5.0.5"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
+    "concurrently": "^7.5.0"
   }
 }

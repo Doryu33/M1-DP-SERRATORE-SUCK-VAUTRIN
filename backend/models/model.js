@@ -2,7 +2,7 @@ import { Low } from 'lowdb'
 import { JSONFile } from 'lowdb/node'
 
 
-const DB_FILEPATH = 'backend/resources/db.json';
+const DB_FILEPATH = 'resources/db.json';
 
 /**
  * Initialise les données et les rend disponibles pour l'application
