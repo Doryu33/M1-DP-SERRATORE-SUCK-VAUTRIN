@@ -54,6 +54,7 @@ const Register = () => {
 
 
 
+
     return (
         <div>
             <Helmet>
@@ -104,7 +105,7 @@ const Register = () => {
                         required
                     />
 
-                    <button className="buttonRegister" type="submit">Terminer</button>
+                    <button className="buttonRegister" type="submit">Envoyer</button>
                 </div>
 
                 <div>
@@ -114,5 +115,7 @@ const Register = () => {
         </div>
     );
 };
+
+
 
 export default Register;
