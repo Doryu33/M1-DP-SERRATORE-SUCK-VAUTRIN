@@ -2,35 +2,26 @@
   "users": {
     "10": {
       "id": "10",
-      "username": "JJ",
-      "email": "tt@t.fr",
-      "name": "JJ",
+      "username": "10",
+      "email": "100@0.fr",
+      "name": "1000",
       "preferences": []
     },
-    "7817689688": {
-      "id": "7817689688",
-      "username": "moi",
-      "password": "test",
-      "email": "ttee@re.re",
-      "name": "JJ",
-      "preferences": [],
-      "appointments": []
-    },
-    "8843778659": {
-      "id": "8843778659",
+    "7226070560": {
+      "id": "7226070560",
       "username": "test",
       "password": "test",
-      "email": "ttee@re.re",
-      "name": "JJ",
+      "email": "test@test.fr",
+      "name": "testeur",
       "preferences": [],
       "appointments": []
     },
-    "129596125054": {
-      "id": "129596125054",
-      "username": "nullissime",
-      "password": "test",
-      "email": "test@example.com",
-      "name": "nom",
+    "111909119219": {
+      "id": "111909119219",
+      "username": "serdfxc",
+      "password": "sefdxc",
+      "email": "sdfxc@in.fr",
+      "name": "erzdx",
       "preferences": [],
       "appointments": []
     }

@@ -1,21 +1,72 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
+import network from '../configs/axiosParams';
 
 const Register = () => {
+
+    const username = useRef("");
+    const password = useRef("");
+    const name = useRef("");
+    const email = useRef("");
+
+
+
+
+    /**
+     * 
+     * @returns 
+     */
+    const formHandler = () => (event) => {
+        event.preventDefault();
+
+        const sendForm = async ({ username, password, name, email }) => {
+            try {
+                const response = await network.post('/users/register', {
+                    username: username,
+                    password: password,
+                    name: name,
+                    email: email,
+                });
+                console.log(response);
+            } catch (err) {
+                console.log(err.response.data.error)
+            }
+        }
+
+        const data = {
+            username: username.current?.value,
+            password: password.current?.value,
+            name: name.current?.value,
+            email: email.current?.value,
+        };
+
+
+        sendForm(data);
+
+    };
+
+
+
+
+
+
+
+
     return (
         <div>
             <Helmet>
                 <title>S'enregistrer</title>
             </Helmet>
             <Navigation />
-            <form className="formRegister">
-                <div class="container">
-                    <h1 class="titleRegister">Créer un compte</h1>
+            <form className="formRegister" onSubmit={formHandler()}>
+                <div className="container">
+                    <h1 className="titleRegister">Créer un compte</h1>
 
-                    <label for="name" className="labelInfo"><b>Prénom</b></label>
+                    <label htmlFor="name" className="labelInfo"><b>Prénom</b></label>
                     <input className="inputRegister"
+                        ref={name}
                         type="name"
                         placeholder="Entrer votre prénom"
                         name="name"
@@ -23,8 +74,9 @@ const Register = () => {
                         required
                     />
 
-                    <label for="username" className="labelInfo"><b>Pseudonyme</b></label>
+                    <label htmlFor="username" className="labelInfo"><b>Pseudonyme</b></label>
                     <input className="inputRegister"
+                        ref={username}
                         type="text"
                         placeholder="Entrer votre pseudonyme"
                         name="username"
@@ -32,8 +84,9 @@ const Register = () => {
                         required
                     />
 
-                    <label for="email" className="labelInfo"><b>Email</b></label>
+                    <label htmlFor="email" className="labelInfo"><b>Email</b></label>
                     <input className="inputRegister"
+                        ref={email}
                         type="text"
                         placeholder="Entrer votre email"
                         name="email"
@@ -41,8 +94,9 @@ const Register = () => {
                         required
                     />
 
-                    <label for="password" className="labelInfo"><b>Mot de passe</b></label>
+                    <label htmlFor="password" className="labelInfo"><b>Mot de passe</b></label>
                     <input className="inputRegister"
+                        ref={password}
                         type="password"
                         placeholder="Entrer votre mot de passe"
                         name="password"
@@ -54,7 +108,7 @@ const Register = () => {
                 </div>
 
                 <div>
-                    <p class="pAlreadyAccount">Vous avez déjà un compte ? <a className="loginRedirection" href="http://localhost:3000/login">Connexion</a></p>
+                    <p className="pAlreadyAccount">Vous avez déjà un compte ? <a className="loginRedirection" href="http://localhost:3000/login">Connexion</a></p>
                 </div>
             </form>
         </div>

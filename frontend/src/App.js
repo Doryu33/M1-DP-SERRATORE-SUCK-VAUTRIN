@@ -51,8 +51,8 @@ function App() {
       */
     }
 
-    getUsersWithFetchAPI();
-    getUsersWithAxios();
+    //getUsersWithFetchAPI();
+    //getUsersWithAxios();
 
 
   }, [])
