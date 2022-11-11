@@ -10,7 +10,7 @@ const baseUser = {
 }
 
 export default class UserModel {
-    constructor(){
+    constructor() {
         (async () => {
             this.db = await initialize();
         })();
@@ -23,13 +23,34 @@ export default class UserModel {
      * @param {*} user 
      * @returns {int} identifiant unique généré pour cet utilisateur
      */
-    async addUser(user){
+    async addUser(user) {
         const users = this.db.data.users;
+
+        const mustHaves = ["username", "password", "email", "name"];
+        let errors = [];
+        errors = mustHaves.map (attribute =>{
+            if (!user.hasOwnProperty(attribute) || !user[attribute]){
+                return ` Missing required attribute "${attribute}"`;
+            }
+        });
+
+        if (errors.length > 0) error(errors);
+
+
         const newId = generateID();
+
+        user = {
+            "username": "Obsy",
+            "password": "test",
+            "email": "",
+            "name": "",
+            "preferences": [],
+            "appointments": [],
+        }
 
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
         users[newId] = Object.assign(baseUser, user);
-    
+
         await this.db.write()
         return newId;
     }
@@ -39,7 +60,7 @@ export default class UserModel {
      * @param {int} userId 
      * @returns {Object} Données utilisateurs
      */
-    async getUserById(userId){
+    async getUserById(userId) {
         const users = this.db.data.users;
         return users[userId];
     }
@@ -49,7 +70,7 @@ export default class UserModel {
      * @param {*} userId 
      * @param {*} newUserData 
      */
-    async updateUser(userId, newUserData){
+    async updateUser(userId, newUserData) {
         const users = this.db.data.users;
         if (!users[userId]) throw new Error(`UserId ${userId} not found`);
 
@@ -65,7 +86,7 @@ export default class UserModel {
      * @returns null | user
      * @throws Error user not recognized
      */
-    async findUserByLoginAndPassword(login, password){
+    async findUserByLoginAndPassword(login, password) {
         const users = this.db.data.users;
         const usersArray = Object.values(users);
         const loggedInUser = usersArray.filter((user) => user.login === login && user.password === password);
@@ -75,7 +96,7 @@ export default class UserModel {
 
 
 
-    
 
-   
+
+
 }
