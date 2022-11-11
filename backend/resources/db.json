@@ -3,9 +3,25 @@
     "10": {
       "id": "10",
       "username": "10",
-      "password": "10",
-      "email": "1000",
+      "email": "100@0.fr",
       "name": "1000",
+      "preferences": []
+    },
+    "7226070560": {
+      "id": "7226070560",
+      "username": "test",
+      "password": "test",
+      "email": "test@test.fr",
+      "name": "testeur",
+      "preferences": [],
+      "appointments": []
+    },
+    "111909119219": {
+      "id": "111909119219",
+      "username": "serdfxc",
+      "password": "sefdxc",
+      "email": "sdfxc@in.fr",
+      "name": "erzdx",
       "preferences": [],
       "appointments": []
     }

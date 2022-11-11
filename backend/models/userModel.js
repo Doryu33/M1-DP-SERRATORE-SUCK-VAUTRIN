@@ -33,7 +33,7 @@ export default class UserModel {
         checkIfAllFieldsExist(user, requiredFields);
         registerValidation(user);
 
-        if (Object.values(users).some(e => e.username === user.username)) throwError(422, "Username already used.");
+        if (Object.values(users).some(e => e.username === user.username)) throwError(400, "Username already used.");
         const newId = generateID();
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
         users[newId] = Object.assign(baseUser, user);
