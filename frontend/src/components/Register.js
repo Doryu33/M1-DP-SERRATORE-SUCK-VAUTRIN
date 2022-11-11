@@ -1,9 +1,13 @@
 import React from 'react';
-import '../styles/register.css';
+import '../styles/register&login.css';
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     return (
         <div>
+            <Helmet>
+                <title>S'enregistrer</title>
+            </Helmet>
             <form className="formRegister">
                 <div class="container">
                     <h1 class="titleRegister">Créer un compte</h1>
