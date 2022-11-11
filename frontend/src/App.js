@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
 import { useEffect } from 'react';
 import network from './configs/axiosParams';
+import Register from './components/Register';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Login from './components/Login';
 
 function App() {
 
-  useEffect(()=>{
+  useEffect(() => {
 
     /**
      * Exemple de requête avec Fetch, c'est englobé dans une fonction asynchrone pour éviter ce genre d'horreur:
@@ -13,14 +16,14 @@ function App() {
      */
     const getUsersWithFetchAPI = async (body) => {
       const response = await fetch('http://localhost:5000/users/id/10',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        // body: JSON.stringify(data)   // potransformé un objet en json pour l'envoyer via le body au serveur (password / login, etc)
-      });
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          // body: JSON.stringify(data)   // potransformé un objet en json pour l'envoyer via le body au serveur (password / login, etc)
+        });
       // parse la réponse en json 
       const data = await response.json();
       console.log(data);
@@ -32,7 +35,7 @@ function App() {
      * Pour l'utiliser, suffit d'importer network depuis configs/axiosParams 
      * D'ailleurs pour modifier la config selon vos besoin vous pouvez aler voir là-dedans
      */
-    const getUsersWithAxios = async() =>{
+    const getUsersWithAxios = async () => {
       const response = await network.get('/users/id/10');
       console.log(response.data);
 
@@ -58,22 +61,16 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/*path="*" va vers l'accueil si l'url n'est pas reconnu*/}
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
