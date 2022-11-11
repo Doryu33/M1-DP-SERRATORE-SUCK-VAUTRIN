@@ -1,54 +1,54 @@
 import React from 'react';
+import '../styles/register.css';
 
 const Register = () => {
     return (
         <div>
-            <form>
+            <form className="formRegister">
                 <div class="container">
-                    <h1>Register</h1>
-                    <p>Kindly fill in this form to register.</p>
-                    <label for="username"><b>Username</b></label>
-                    <input
+                    <h1 class="titleRegister">Créer un compte</h1>
+
+                    <label for="name" className="labelInfo"><b>Prénom</b></label>
+                    <input className="inputRegister"
+                        type="name"
+                        placeholder="Entrer votre prénom"
+                        name="name"
+                        id="name"
+                        required
+                    />
+
+                    <label for="username" className="labelInfo"><b>Pseudonyme</b></label>
+                    <input className="inputRegister"
                         type="text"
-                        placeholder="Enter username"
+                        placeholder="Entrer votre pseudonyme"
                         name="username"
                         id="username"
                         required
                     />
 
-                    <label for="email"><b>Email</b></label>
-                    <input
+                    <label for="email" className="labelInfo"><b>Email</b></label>
+                    <input className="inputRegister"
                         type="text"
-                        placeholder="Enter Email"
+                        placeholder="Entrer votre email"
                         name="email"
                         id="email"
                         required
                     />
 
-                    <label for="pwd"><b>Password</b></label>
-                    <input
+                    <label for="password" className="labelInfo"><b>Mot de passe</b></label>
+                    <input className="inputRegister"
                         type="password"
-                        placeholder="Enter Password"
-                        name="pwd"
-                        id="pwd"
+                        placeholder="Entrer votre mot de passe"
+                        name="password"
+                        id="password"
                         required
                     />
 
-                    <label for="pwd-repeat"><b>Repeat Password</b></label>
-                    <input
-                        type="password"
-                        placeholder="Repeat Password"
-                        name="pwd-repeat"
-                        id="pwd-repeat"
-                        required
-                    />
-
-                    <button type="submit">Register</button>
+                    <button className="buttonRegister" type="submit">Terminer</button>
                 </div>
 
                 <div>
-                    <p>Already have an account? <a href="http://localhost:3000">Log in</a>.</p>
-
+                    <p class="pAlreadyAccount">Vous avez déjà un compte ? <a className="loginRedirection" href="http://localhost:3000/login">Connexion</a></p>
                 </div>
             </form>
         </div>
