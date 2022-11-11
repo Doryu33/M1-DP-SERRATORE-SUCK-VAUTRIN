@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
+import Navigation from './Navigation';
 
 const Register = () => {
     return (
@@ -8,6 +9,7 @@ const Register = () => {
             <Helmet>
                 <title>S'enregistrer</title>
             </Helmet>
+            <Navigation />
             <form className="formRegister">
                 <div class="container">
                     <h1 class="titleRegister">Créer un compte</h1>

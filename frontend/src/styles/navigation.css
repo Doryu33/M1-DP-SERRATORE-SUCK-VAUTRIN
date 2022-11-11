@@ -1,0 +1,22 @@
+.navbar {
+    overflow: hidden;
+    background-color: #1C3879;
+    height: auto;
+    padding: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .6);
+}
+
+.navbar a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding-inline: 10px;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 22px;
+}
+
+.navbar p:hover {
+    color: rgb(184, 180, 180);
+
+}

@@ -1,5 +1,7 @@
 import React from 'react';
+import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
+import Navigation from './Navigation';
 
 const Login = () => {
     return (
@@ -7,6 +9,8 @@ const Login = () => {
             <Helmet>
                 <title>Connexion</title>
             </Helmet>
+            <Navigation />
+
             <form className="formLogin">
                 <div class="container">
                     <h1 class="titleLogin">Se connecter</h1>
