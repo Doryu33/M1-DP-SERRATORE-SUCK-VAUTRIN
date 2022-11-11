@@ -28,18 +28,18 @@ export default class UserController {
         const json = req.body;
 
         // Si les données reçues sont vides on retourne une erreur
-        if (Object.keys(json).length === 0 && json.constructor === Object) {
-            return res.status(400).json({error: 'Invalid or empty user'});
+        if (Object.keys(json).length == 0 && json.constructor === Object) {
+            const error = new Error("Invalid or empty user");
+            error.statusCode = 400;
+            return next(error);
         }
+
         try {
             const userId = await this.model.addUser(json);
+            return res.status(200).json({userId: userId});
         } catch (err) {
-            //console.log(err);
-            //next(err);
-            return res.status(400).json({error: err.message});
-
+            return next(err);
         }
-        return res.status(200).json({userId: userId});
     }
 
     /**
