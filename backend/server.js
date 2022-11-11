@@ -2,6 +2,8 @@ import express from 'express';
 import userRouter from './routers/userRoutes.js';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
+import errorHandler from './middlewares/errorHandler.js';
+
 
 // initialise la lecture du fichier .env
 dotenv.config({ debug: true })
@@ -30,6 +32,7 @@ app.use(express.json());
 app.use('/users', userRouter);
 
 
+app.use(errorHandler);
 
 // Lance l'écoute
 app.listen(PORT, () => console.log(`Server started (port ${PORT})`));

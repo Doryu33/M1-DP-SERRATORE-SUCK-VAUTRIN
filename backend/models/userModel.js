@@ -27,27 +27,26 @@ export default class UserModel {
         const users = this.db.data.users;
 
         const mustHaves = ["username", "password", "email", "name"];
-        let errors = [];
-        errors = mustHaves.map (attribute =>{
+        const errors = mustHaves.filter (attribute =>{
             if (!user.hasOwnProperty(attribute) || !user[attribute]){
-                return ` Missing required attribute "${attribute}"`;
+                return attribute;
             }
         });
 
-        if (errors.length > 0) error(errors);
-
-
-        const newId = generateID();
-
-        user = {
-            "username": "Obsy",
-            "password": "test",
-            "email": "",
-            "name": "",
-            "preferences": [],
-            "appointments": [],
+        if (errors.length > 0){
+            let error = new Error("Missing attributes: " + errors.join(", "));
+            error.statusCode = 422;
+            throw error;
         }
 
+        const emailExists = users.some((values) => values.email === user.email);
+
+        if (emailExists){
+            let error = new Error("Email already used.");
+            error.statusCode = 400;
+            throw error;
+        }
+        const newId = generateID();
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
         users[newId] = Object.assign(baseUser, user);
 
