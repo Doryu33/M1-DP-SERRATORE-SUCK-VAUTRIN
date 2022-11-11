@@ -24,8 +24,21 @@ export default class UserController {
      * @param {*} res 
      * @returns 
      */
-    registerUser = async (req, res) => {
-        const userId = await this.model.addUser(null);
+    registerUser = async (req, res, next) => {
+        const json = req.body;
+
+        // Si les données reçues sont vides on retourne une erreur
+        if (Object.keys(json).length === 0 && json.constructor === Object) {
+            return res.status(400).json({error: 'Invalid or empty user'});
+        }
+        try {
+            const userId = await this.model.addUser(json);
+        } catch (err) {
+            //console.log(err);
+            //next(err);
+            return res.status(400).json({error: err.message});
+
+        }
         return res.status(200).json({userId: userId});
     }
 
