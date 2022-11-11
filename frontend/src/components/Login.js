@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -37,7 +38,11 @@ const Login = () => {
                 </div>
 
                 <div>
-                    <p className="pNoAccount">Vous n'avez pas de compte ? <a className="registerRedirection" href="http://localhost:3000/register">S'enregistrer</a></p>
+                    <p className="pNoAccount">Vous n'avez pas de compte ?&nbsp;
+                        <NavLink to="/register" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            S'enregistrer
+                        </NavLink>
+                    </p>
                 </div>
             </form>
         </div>
