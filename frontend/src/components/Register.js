@@ -11,10 +11,10 @@ const Register = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const sendInfo = (e) => {
+    const sendInfo = async (e) => {
         e.preventDefault();
         console.log("senINfo");
-        const data = network.post(
+        const data = await network.post(
             "users/register",
             {
                 username: username,
@@ -23,7 +23,7 @@ const Register = () => {
                 password: password,
             }
         );
-        console.log(data.id);
+        console.log(data);
     }
 
     return (
@@ -86,7 +86,5 @@ const Register = () => {
         </div>
     );
 };
-
-
 
 export default Register;

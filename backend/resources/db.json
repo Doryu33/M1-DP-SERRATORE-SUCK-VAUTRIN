@@ -1,1 +1,13 @@
-{}
+{
+  "users": {
+    "10": {
+      "id": "10",
+      "username": "10",
+      "password": "10",
+      "email": "1000",
+      "name": "1000",
+      "preferences": [],
+      "appointments": []
+    }
+  }
+}
