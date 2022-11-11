@@ -1,22 +1,26 @@
 import express from 'express';
 import userRouter from './routers/userRoutes.js';
+import cors from 'cors';
+import * as dotenv from 'dotenv';
 
-const PORT = 5000;
+// initialise la lecture du fichier .env
+dotenv.config({ debug: true })
+
+const PORT = process.env.BACKEND_PORT;
+
 
 // instance d'express permettant de faire tourner le serveur
 const app = express();
 
+// Stratégie CORS public
+app.use(cors());
 
 // ----------- Configuration du serveur avant de lui permettre de traiter des requêtes  -------------- //
 
 
-/* Permet de livrer des fichiers statiques (html, images, etc) contenu dans le fichier resources
-du frontend */
-app.use(express.static('frontend/resources',
-    {
-        etag: false, // Permet d'indiquer au navigateur de ne pas garder en cache les fichiers statiques
-    })
-);
+// Accepte uniquement des données au format json
+app.use(express.json());
+
 
 // Utilisations de routeurs pour répondre aux diverses requêtes possibles
 

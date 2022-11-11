@@ -14,7 +14,6 @@ export default class UserController {
      */
     getAllUsers = async (req, res) => {
         //console.log(this.model.generateID());
-        this.model.addUser(null);
         return res.status(200).send("Surprise!");
     }
 
@@ -41,7 +40,7 @@ export default class UserController {
         if (!userData) return res.status(404).json({error: "User not found."});
         const copy = JSON.parse(JSON.stringify(userData));
         
-        return res.status(200).json(userData);
+        return res.status(200).json(copy);
     }
 
 

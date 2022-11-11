@@ -5,8 +5,8 @@
   "main": "concurrently  -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" ",
   "type": "module",
   "scripts": {
-    "dev": "concurrently  -c \"auto\" --kill-others --kill-others-on-fail \"cd backend && npm run dev\" \"cd frontend && npm run dev\" ",
-    "start": "concurrently  -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" "
+    "dev": "concurrently -c \"auto\" --kill-others --kill-others-on-fail \"cd backend && npm run dev\" \"cd frontend && npm run dev\" ",
+    "start": "concurrently -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" "
   },
   "repository": {
     "type": "git",
