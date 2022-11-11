@@ -1,32 +1,28 @@
 {
   "users": {
     "10": {
+      "id": "10",
       "username": "JJ",
       "email": "tt@t.fr",
+      "name": "JJ",
+      "password": "test",
+      "preferences": [],
+      "appointments": []
+    },
+    "7817689688": {
+      "id": "7817689688",
+      "username": "moi",
+      "password": "test",
+      "email": "ttee@re.re",
       "name": "JJ",
       "preferences": [],
       "appointments": []
     },
-    "91479127743": {
-      "username": "JJ",
+    "8843778659": {
+      "id": "8843778659",
+      "username": "test",
       "password": "test",
-      "email": "tt@t.fr",
-      "name": "JJ",
-      "preferences": [],
-      "appointments": []
-    },
-    "108664107153": {
-      "username": "JJ",
-      "password": "test",
-      "email": "tt@t.fr",
-      "name": "JJ",
-      "preferences": [],
-      "appointments": []
-    },
-    "70565112503": {
-      "username": "JJ",
-      "password": "test",
-      "email": "tt@t.fr",
+      "email": "ttee@re.re",
       "name": "JJ",
       "preferences": [],
       "appointments": []

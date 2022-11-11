@@ -21,7 +21,7 @@ router.get('/all', userController.getAllUsers);
 router.get('/id/:id', userController.loadUserData);
 
 
-router.get('/login', userController.login);
+router.post('/login', userController.login);
 
 router.post('/register', userController.registerUser);
 
