@@ -12,10 +12,10 @@ const Login = () => {
             <Navigation />
 
             <form className="formLogin">
-                <div class="container">
-                    <h1 class="titleLogin">Se connecter</h1>
+                <div className="container">
+                    <h1 className="titleLogin">Se connecter</h1>
 
-                    <label for="username" className="labelInfo"><b>Pseudonyme</b></label>
+                    <label htmlFor="username" className="labelInfo"><b>Pseudonyme</b></label>
                     <input className="inputLogin"
                         type="text"
                         placeholder="Entrer votre pseudonyme"
@@ -24,7 +24,7 @@ const Login = () => {
                         required
                     />
 
-                    <label for="password" className="labelInfo"><b>Mot de passe</b></label>
+                    <label htmlFor="password" className="labelInfo"><b>Mot de passe</b></label>
                     <input className="inputLogin"
                         type="password"
                         placeholder="Entrer votre mot de passe"
@@ -37,7 +37,7 @@ const Login = () => {
                 </div>
 
                 <div>
-                    <p class="pNoAccount">Vous n'avez pas de compte ? <a className="registerRedirection" href="http://localhost:3000/register">S'enregistrer</a></p>
+                    <p className="pNoAccount">Vous n'avez pas de compte ? <a className="registerRedirection" href="http://localhost:3000/register">S'enregistrer</a></p>
                 </div>
             </form>
         </div>
