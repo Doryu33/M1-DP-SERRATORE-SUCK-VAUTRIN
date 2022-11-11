@@ -29,7 +29,7 @@ export default class UserController {
 
         // Si les données reçues sont vides on retourne une erreur
         if (Object.keys(json).length == 0 && json.constructor === Object) {
-            const error = new Error("Invalid or empty user");
+            const error = new Error("Invalid or empty userdata");
             error.statusCode = 400;
             return next(error);
         }
@@ -78,21 +78,24 @@ export default class UserController {
      * Tente d'authentifier l'utilisateur
      * @param {*} req 
      * @param {*} res 
+     * @param {*} next
      * @returns 
      */
-    login = async (req, res) => {
-        const password = req.data?.password;
-        const login = req.data?.login;
+    login = async (req, res, next) => {
+        const data = req.body;
+
+        const password = data.password;
+        const login = data.username;
 
         if (!password || !login){
-            return res.status(404).json({error: 'Login ou mot de passe absent de la requête.'});
+            return res.status(404).json({error: { message : 'Login ou mot de passe absent de la requête.'}});
         }
 
         try{
             const userFound = await this.model.findUserByLoginAndPassword(login, password);
-            return res.status(200).json({user: userFound});
+            return res.status(200).json({data: userFound});
         }catch(error){
-            return res.status(404).json({error: 'Utilisateur non authentifié.'});
+            next(error);
         }
 
     }

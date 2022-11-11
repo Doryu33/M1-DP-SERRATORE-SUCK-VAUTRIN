@@ -1,13 +1,18 @@
 import { initialize, generateID } from './model.js';
+import { throwError } from '../middlewares/errorHandler.js';
+import { checkIfAllFieldsExist, registerValidation } from './validators/userValidator.js';
 
 const baseUser = {
+    "id": null,
     "username": "",
     "password": "",
     "email": "",
     "name": "",
     "preferences": [],
     "appointments": [],
-}
+};
+
+const requiredFields = ["username", "password", "email", "name"];
 
 export default class UserModel {
     constructor() {
@@ -25,30 +30,14 @@ export default class UserModel {
      */
     async addUser(user) {
         const users = this.db.data.users;
+        checkIfAllFieldsExist(user, requiredFields);
+        registerValidation(user);
 
-        const mustHaves = ["username", "password", "email", "name"];
-        const errors = mustHaves.filter (attribute =>{
-            if (!user.hasOwnProperty(attribute) || !user[attribute]){
-                return attribute;
-            }
-        });
-
-        if (errors.length > 0){
-            let error = new Error("Missing attributes: " + errors.join(", "));
-            error.statusCode = 422;
-            throw error;
-        }
-
-        const emailExists = users.some((values) => values.email === user.email);
-
-        if (emailExists){
-            let error = new Error("Email already used.");
-            error.statusCode = 400;
-            throw error;
-        }
+        if (Object.values(users).some(e => e.username === user.username)) throwError(422, "Username already used.");
         const newId = generateID();
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
         users[newId] = Object.assign(baseUser, user);
+        users[newId].id = newId;
 
         await this.db.write()
         return newId;
@@ -61,6 +50,8 @@ export default class UserModel {
      */
     async getUserById(userId) {
         const users = this.db.data.users;
+        delete users[userId].password;
+        delete users[userId].appointments;
         return users[userId];
     }
 
@@ -88,14 +79,15 @@ export default class UserModel {
     async findUserByLoginAndPassword(login, password) {
         const users = this.db.data.users;
         const usersArray = Object.values(users);
-        const loggedInUser = usersArray.filter((user) => user.login === login && user.password === password);
-        if (!loggedInUser[0]) throw new Error("User not recognized.");
+        const loggedInUser = usersArray.filter(user => user.username === login && user.password === password);
+        delete loggedInUser[0].password;
+        delete loggedInUser[0].appointments;
+        if (!loggedInUser[0]) throwError(404, "User not found.");
         return loggedInUser[0];
     }
 
 
-
-
-
-
 }
+
+
+export { requiredFields, baseUser };

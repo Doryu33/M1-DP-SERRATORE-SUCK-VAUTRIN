@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN#readme",
   "dependencies": {
-    "concurrently": "^7.5.0"
+    "concurrently": "^7.5.0",
+    "validatorjs": "^3.22.1"
   }
 }

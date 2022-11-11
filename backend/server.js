@@ -2,12 +2,13 @@ import express from 'express';
 import userRouter from './routers/userRoutes.js';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
-import errorHandler from './middlewares/errorHandler.js';
+import { errorHandler, wrongRouteHandler } from './middlewares/errorHandler.js';
 
 
 // initialise la lecture du fichier .env
 dotenv.config({ debug: true })
 
+// Port utilisé par le serveur
 const PORT = process.env.BACKEND_PORT;
 
 
@@ -31,9 +32,11 @@ app.use(express.json());
 // userRouteur traite la partie entre crochets pour déterminer quoi répondre : .../users/[...]
 app.use('/users', userRouter);
 
+// Gestion des erreurs 
+//app.use(errorHandler);
 
-app.use(errorHandler);
 
+app.get('*', wrongRouteHandler);
 // Lance l'écoute
 app.listen(PORT, () => console.log(`Server started (port ${PORT})`));
 
