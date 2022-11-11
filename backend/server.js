@@ -31,12 +31,11 @@ app.use(express.json());
 // Exemple de Middleware : une requête URL avec '.../users/...' sera traité par le routeur userRouteur. 
 // userRouteur traite la partie entre crochets pour déterminer quoi répondre : .../users/[...]
 app.use('/users', userRouter);
+app.get('*', wrongRouteHandler);
 
 // Gestion des erreurs 
-//app.use(errorHandler);
+app.use(errorHandler);
 
-
-app.get('*', wrongRouteHandler);
 // Lance l'écoute
 app.listen(PORT, () => console.log(`Server started (port ${PORT})`));
 

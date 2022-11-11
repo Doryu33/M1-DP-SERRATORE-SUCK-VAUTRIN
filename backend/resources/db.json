@@ -5,9 +5,7 @@
       "username": "JJ",
       "email": "tt@t.fr",
       "name": "JJ",
-      "password": "test",
-      "preferences": [],
-      "appointments": []
+      "preferences": []
     },
     "7817689688": {
       "id": "7817689688",
@@ -24,6 +22,15 @@
       "password": "test",
       "email": "ttee@re.re",
       "name": "JJ",
+      "preferences": [],
+      "appointments": []
+    },
+    "129596125054": {
+      "id": "129596125054",
+      "username": "nullissime",
+      "password": "test",
+      "email": "test@example.com",
+      "name": "nom",
       "preferences": [],
       "appointments": []
     }
