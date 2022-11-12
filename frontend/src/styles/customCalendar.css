@@ -1,5 +1,13 @@
 .CustomCalendar{
-    max-width: 90vw;
-    max-height: 90vw;
+    max-width: 100vw;
+    max-height: 100vw;
     padding: 20px;
+}
+
+h2{
+    text-transform: capitalize;
+}
+
+.AppointmentPopUp{
+    padding: 50px;
 }
