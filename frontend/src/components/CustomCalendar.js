@@ -4,6 +4,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import frLocale from '@fullcalendar/core/locales/fr';
 import '../styles/customCalendar.css';
 
 const events = [
@@ -30,6 +31,7 @@ const CustomCalendar = () => {
         <div>
             <div className="CustomCalendar" >
                 <FullCalendar
+                    locale={frLocale}
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     headerToolbar={{
@@ -37,7 +39,7 @@ const CustomCalendar = () => {
                     }}
                     customButtons={{
                         new: {
-                            text: 'new',
+                            text: 'Ajouter un événement',
                             click: () => console.log('new event'),
                         },
                     }}
@@ -45,6 +47,7 @@ const CustomCalendar = () => {
                     nowIndicator
                     dateClick={(e) => console.log(e.dateStr)}
                     eventClick={(e) => console.log(e.event.id)}
+                
                 />
             </div>
             <div>
