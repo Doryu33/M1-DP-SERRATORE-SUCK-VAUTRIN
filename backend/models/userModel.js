@@ -1,5 +1,6 @@
 import { initialize, generateID } from './model.js';
 import { registerValidation } from './validators/userValidator.js';
+import { ValidationError } from '../errors/validationError.js';
 
 const baseUser = {
     "id": null,
@@ -75,10 +76,11 @@ export default class UserModel {
         const users = this.db.data.users;
         const usersArray = Object.values(users);
         const loggedInUser = usersArray.filter(user => user.username === login && user.password === password);
-        delete loggedInUser[0].password;
-        delete loggedInUser[0].appointments;
-        if (!loggedInUser[0]) throw new ValidationError (`UserId ${userId} not found`, 404);
-        return loggedInUser[0];
+        if (!loggedInUser[0]) throw new ValidationError (`Login failed : user not found`, 404);
+        const copy = JSON.parse(JSON.stringify(loggedInUser[0]));
+        delete copy.password;
+        delete copy.appointments;
+        return copy;
     }
 
 

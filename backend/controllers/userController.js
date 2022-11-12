@@ -84,6 +84,8 @@ export default class UserController {
     login = async (req, res, next) => {
         const data = req.body;
 
+        console.log(req.body);
+
         const password = data.password;
         const login = data.username;
 
