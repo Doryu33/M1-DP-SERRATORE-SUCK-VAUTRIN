@@ -35,13 +35,13 @@
     width: 40px;
 }
 
-.divDurationType {
+.divType {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.containerDurationType {
+.containerType {
     display: flex;
     flex-direction: column;
 }
