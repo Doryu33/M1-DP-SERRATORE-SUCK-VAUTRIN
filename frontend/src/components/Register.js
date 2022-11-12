@@ -3,6 +3,7 @@ import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
 import network from '../configs/axiosParams';
+import { NavLink } from 'react-router-dom';
 
 const Register = () => {
 
@@ -11,13 +12,6 @@ const Register = () => {
     const name = useRef("");
     const email = useRef("");
 
-
-
-
-    /**
-     * 
-     * @returns 
-     */
     const formHandler = () => (event) => {
         event.preventDefault();
 
@@ -41,19 +35,9 @@ const Register = () => {
             name: name.current?.value,
             email: email.current?.value,
         };
-
-
         sendForm(data);
 
     };
-
-
-
-
-
-
-
-
 
     return (
         <div>
@@ -109,13 +93,15 @@ const Register = () => {
                 </div>
 
                 <div>
-                    <p className="pAlreadyAccount">Vous avez déjà un compte ? <a className="loginRedirection" href="http://localhost:3000/login">Connexion</a></p>
+                    <p className="pAlreadyAccount">Vous avez déjà un compte ?&nbsp;
+                        <NavLink to="/login" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                            Connexion
+                        </NavLink>
+                    </p>
                 </div>
             </form>
         </div>
     );
 };
-
-
 
 export default Register;

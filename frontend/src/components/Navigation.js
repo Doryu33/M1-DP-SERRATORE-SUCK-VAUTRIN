@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return (
-        <header>
-            <div className="navbar">
+        <header className="navbar">
+            <div className="navbarLeft">
                 <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <p>Home</p>
                 </NavLink>
+            </div>
+            <div className="navbarRight">
                 {/*Mettre login et register à droite*/}
                 <NavLink to="/login" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <p>Connexion</p>
@@ -17,7 +19,7 @@ const Navigation = () => {
                     <p>S'enregistrer</p>
                 </NavLink>
             </div >
-        </header>
+        </header >
     );
 };
 
