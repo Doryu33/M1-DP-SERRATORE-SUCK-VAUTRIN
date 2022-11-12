@@ -1,5 +1,20 @@
 .CustomCalendar{
-    max-width: 90vw;
-    max-height: 90vw;
-    padding: 20px;
+    max-width: 100vw;
+    max-height: 100vw;
+    width: 100vw;
+    padding: 16px;
+
 }
+
+h2{
+    text-transform: capitalize;
+}
+
+.container{
+    width: 20vw;
+    padding: 16px;
+}
+
+.MainContainer{
+    display: flex;
+ }
