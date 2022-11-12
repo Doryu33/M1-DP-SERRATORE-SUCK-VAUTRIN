@@ -1,7 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { Helmet } from "react-helmet";
-import Navigation from './Navigation';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -30,10 +28,6 @@ const CustomCalendar = () => {
     const [date, setDate] = useState(new Date())
     return (
         <div>
-            <Helmet>
-                <title>Calendrier</title>
-            </Helmet>
-            <Navigation />
             <div className="CustomCalendar" >
                 <FullCalendar
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

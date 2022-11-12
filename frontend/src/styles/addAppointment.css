@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 21vw;
+}
+
+.labelInfoAddAp {
+    color: #1C3879;
+    padding-bottom: 5px;
+}
+
+.titleAddAppointment {
+    text-align: center;
+    color: #1C3879;
+}
+
+.inputTitle,
+.inputDescription,
+.inputDuration,
+.inputType {
+    margin: 0.3em 0em 1.25em 0em;
+    outline: none;
+    padding: 0.5em;
+    border: none;
+    background-color: rgb(225, 225, 225);
+    border-radius: 0.25em;
+}
+
+.inputDescription {
+    height: 45px;
+}
+
+
+.inputDuration {
+    width: 40px;
+}
+
+.divDurationType {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.containerDurationType {
+    display: flex;
+    flex-direction: column;
+}
