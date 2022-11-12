@@ -26,22 +26,8 @@ const AddAppointment = () => {
                     id="description"
                 />
 
-                <div className="divDurationType">
-                    <div className="containerDurationType">
-                        <label htmlFor="duration" className="labelInfoAddAp"><b>Durée</b></label>
-                        <div className="divDuration">
-                            <input className="inputDuration"
-                                type="number"
-                                min="0"
-                                name="duration"
-                                id="duration"
-                            />
-                            <input type="radio" id="hour" name="duration" value="hour" /><label htmlFor="hour">Heure(s)</label>
-                            <input type="radio" id="day" name="duration" value="day" /><label htmlFor="day">Jour(s)</label>
-                        </div>
-                    </div>
-
-                    <div className="containerDurationType">
+                <div className="divType">
+                    <div className="containerType">
                         <label htmlFor="type" className="labelInfoAddAp"><b>Type</b></label>
                         <select className="inputType" name="type" id="type-select">
                             <option value="red">Rouge</option>

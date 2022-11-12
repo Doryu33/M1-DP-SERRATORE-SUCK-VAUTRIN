@@ -8,26 +8,9 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import '../styles/customCalendar.css';
 import AddAppointment from './AddAppointment';
 
-/*
-const events = [
-    {
-        id: 1,
-        title: 'event 1',
-        start: '2022-11-12T20:00:00',
-        end: '2022-11-12T21:00:00',
-        backgroundColor: 'rgb(255,0,0)'
-    },
-    {
-        id: 2,
-        title: 'event 2',
-        start: '2022-11-20T20:00:00',
-        end: '2022-11-20T20:00:00',
-        backgroundColor: 'rgb(0,0,255)'
-    },
-];*/
-
-
 const CustomCalendar = () => {
+
+    const [showAddAppointment, setShowAddAppointment] = React.useState(false)
 
     const calendarRef = React.createRef();
 
@@ -44,13 +27,10 @@ const CustomCalendar = () => {
     var idi = 0;
 
     return (
-        <>
-        <div>
-            <div>
+        <div className='MainContainer'>
+            <div className="CustomCalendar" >
                 <p>Date de debut: {startDate.toISOString()}</p>
                 <p>Date de fin: {endDate.toISOString()}</p>
-            </div>
-            <div className="CustomCalendar" >
                 <FullCalendar
                     //Reference du calendar
                     ref={calendarRef}
@@ -60,29 +40,26 @@ const CustomCalendar = () => {
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     headerToolbar={{
-                        center: 'timeGridDay,timeGridWeek,dayGridMonth new testdebug',
+                        center: 'timeGridDay,timeGridWeek,dayGridMonth new',
                     }}
                     customButtons={{
                         new: {
                             text: 'Ajouter un événement',
                             click: () => {
-                                onEventAdded({
+                                setShowAddAppointment(true)
+                                /*onEventAdded({
                                     id: idi++,
                                     title: 'my event',
                                     start: startDate,
                                     end: endDate,
-                                  })
+                                })*/
                             },
                         },
-                        testdebug: {
-                            text: 'Afficher la selection',
-                            click: () => alert('Date selectionnee: du ' + startDate.toISOString() + ' au ' + endDate.toISOString())
-                        }
                     }}
                     events={events}
-                    eventClick={(e) => console.log(e.event.id)}
+                    //eventClick={(e) => console.log(e.event.id)}
 
-                    dateClick={(e) => console.log(e.dateStr)}
+                    //dateClick={(e) => console.log(e.dateStr)}
 
                     selectable="true"
                     select={(e) => {
@@ -91,9 +68,8 @@ const CustomCalendar = () => {
                     }}
                 />
             </div>
+            { showAddAppointment ? <AddAppointment/> : null }
         </div>
-        <AddAppointment class="AppointmentPopUp"/>
-        </>
     );
 };
 
