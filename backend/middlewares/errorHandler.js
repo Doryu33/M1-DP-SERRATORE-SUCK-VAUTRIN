@@ -7,7 +7,6 @@
  * @returns 
  */
 export function errorHandler(err, req, res, next) {
-
   err.statusCode = err.statusCode || 500;
 
   return res.status(err.statusCode).json({
@@ -25,9 +24,24 @@ export function errorHandler(err, req, res, next) {
  * @returns 
  */
 export function wrongRouteHandler(req, res) {
-  return res.status(404).json({
-    error: {
-      message: "Invalid route",
-    }
-  });
+  switch (req.method) {
+    case 'POST':
+      return res.status(403).json({
+        error: {
+          message: "Forbidden route",
+        }
+      });
+    case 'GET':
+      return res.status(404).json({
+        error: {
+          message: "Invalid route",
+        }
+      });
+    default:
+      return res.status(404).json({
+        error: {
+          message: "Invalid route",
+        }
+      });
+  }
 }

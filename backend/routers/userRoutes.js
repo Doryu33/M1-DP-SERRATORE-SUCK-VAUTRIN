@@ -7,11 +7,6 @@ const router = Router();
 
 const controller = new UserController();
 
-/*
- Traite les requêtes GET (car router.get(...)) sur l'url .../users/all en utilisant la fonction getAllUsers
- du contrôleur userController
-*/
-router.get('/all', controller.getAllUsers);
 
 /**
  * Traite les requêtes GET comme au-dessus, sauf que ':userId' permet d'utiliser une URL de type :

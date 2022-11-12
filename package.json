@@ -5,7 +5,6 @@
   "main": "concurrently  -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" ",
   "type": "module",
   "scripts": {
-    "postinstall": "(cd frontend && npm install); (cd backend && npm install)",
     "dev": "concurrently -c \"auto\" --kill-others --kill-others-on-fail \"cd backend && npm run dev\" \"cd frontend && npm run dev\" ",
     "start": "concurrently -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" "
   },
@@ -20,7 +19,6 @@
   },
   "homepage": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN#readme",
   "dependencies": {
-    "concurrently": "^7.5.0",
-    "validatorjs": "^3.22.1"
+    "concurrently": "^7.5.0"
   }
 }

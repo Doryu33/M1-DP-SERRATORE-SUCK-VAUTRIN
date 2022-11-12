@@ -33,7 +33,7 @@ app.use(express.json());
 // userRouteur traite la partie entre crochets pour déterminer quoi répondre : .../users/[...]
 app.use('/users', userRouter);
 app.use('/calendar', calendarRouter);
-app.get('*', wrongRouteHandler);
+app.use('*', wrongRouteHandler);
 
 // Gestion des erreurs 
 app.use(errorHandler);

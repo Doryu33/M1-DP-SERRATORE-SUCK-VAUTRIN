@@ -22,7 +22,7 @@ export async function initialize(){
             throw new Error('Erreur: Json Object est vide')
         } 
     }catch (err){
-        db.data = { users: {} };
+        db.data = { users: {}, events: {} };
         await db.write();
     }
     

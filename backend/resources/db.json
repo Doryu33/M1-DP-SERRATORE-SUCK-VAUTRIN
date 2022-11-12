@@ -6,44 +6,88 @@
       "email": "100@0.fr",
       "name": "1000",
       "password": "password",
-      "preferences": [],
-      "appointments": []
+      "preferences": []
     },
-    "7226070560": {
-      "id": "7226070560",
+    "122134106804": {
+      "id": "122134106804",
       "username": "test",
       "password": "test",
       "email": "test@test.fr",
-      "name": "testeur",
-      "preferences": [],
-      "appointments": []
+      "name": "moi",
+      "preferences": []
     },
-    "111909119219": {
-      "id": "111909119219",
-      "username": "serdfxc",
-      "password": "sefdxc",
-      "email": "sdfxc@in.fr",
-      "name": "erzdx",
-      "preferences": [],
-      "appointments": []
-    },
-    "111286117037": {
-      "id": "111286117037",
-      "username": "hugs",
-      "password": "Bonjour54",
-      "email": "hugo@gmail.com",
-      "name": "HUgo",
-      "preferences": [],
-      "appointments": []
-    },
-    "119381117299": {
-      "id": "119381117299",
-      "username": "tesssst",
+    "11429972564": {
+      "id": "11429972564",
+      "username": "testt",
       "password": "test",
-      "email": "test@fr.fr",
-      "name": "testest",
-      "preferences": [],
-      "appointments": []
+      "email": "test@test.fr",
+      "name": "moi",
+      "preferences": []
+    },
+    "9752287035": {
+      "id": "9752287035",
+      "username": "hugto",
+      "password": "test",
+      "email": "email@test.fr",
+      "name": "test",
+      "preferences": []
+    },
+    "10606295626": {
+      "id": "10606295626",
+      "username": "hugo",
+      "password": "test",
+      "email": "email@test.fr",
+      "name": "test",
+      "preferences": []
+    },
+    "97746119974": {
+      "id": "97746119974",
+      "username": "hugoeer",
+      "password": "test",
+      "email": "email@test.fr",
+      "name": "test",
+      "preferences": []
+    },
+    "8349798220": {
+      "id": "8349798220",
+      "username": "hugeoeer",
+      "password": "test",
+      "email": "email@test.fr",
+      "name": "test",
+      "preferences": []
+    },
+    "12126067371": {
+      "id": "12126067371",
+      "username": "hugeoeeer",
+      "password": "test",
+      "email": "email@test.fr",
+      "name": "test",
+      "preferences": []
+    }
+  },
+  "events": {
+    "1": {
+      "id": 1,
+      "title": "test",
+      "start": "2022-11-12T17:20:13.900Z",
+      "end": "2022-11-12T17:21:13.900Z",
+      "backgroundColor": "FF2D00",
+      "extendedProps": {
+        "description": "t",
+        "ownerId": 10,
+        "invitedId": []
+      }
+    },
+    "525": {
+      "id": 1,
+      "title": "test",
+      "start": "2022-11-12T17:20:13.900Z",
+      "end": "2022-11-12T17:21:13.900Z",
+      "backgroundColor": "FF2D00",
+      "extendedProps": {
+        "description": "t",
+        "invitedId": []
+      }
     }
   }
 }

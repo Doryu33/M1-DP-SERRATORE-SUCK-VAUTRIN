@@ -10,13 +10,6 @@ export default class UserController {
         this.model = new UserModel();
     }
 
-    /**
-     * Retourne pour le moment rien d'intéressant.
-     */
-    getAllUsers = async (req, res) => {
-        //console.log(this.model.generateID());
-        return res.status(200).send("Surprise!");
-    }
 
 
     /**
@@ -47,13 +40,13 @@ export default class UserController {
      * @param {*} res 
      * @returns 
      */
-    loadUserData = async (req, res) => {
-        const userData = await this.model.getUserById(req.params.userId);
-        if (!userData){
-            return res(new ValidationError(`User ${req.params.userId} does not exist`, 400));
+    loadUserData = async (req, res, next) => {
+        try{
+            const userData = await this.model.getUserById(req.params.userId);
+            return res.status(200).json(userData);
+        } catch (err){
+            next(err);
         }
-        const copy = JSON.parse(JSON.stringify(userData));
-        return res.status(200).json(copy);
     }
 
 
@@ -83,9 +76,6 @@ export default class UserController {
      */
     login = async (req, res, next) => {
         const data = req.body;
-
-        console.log(req.body);
-
         const password = data.password;
         const login = data.username;
 

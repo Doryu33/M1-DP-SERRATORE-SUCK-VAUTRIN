@@ -4,12 +4,11 @@ import { ValidationError } from '../errors/validationError.js';
 
 const baseUser = {
     "id": null,
-    "username": "",
-    "password": "",
-    "email": "",
-    "name": "",
+    "username": null,
+    "password": null,
+    "email": null,
+    "name": null,
     "preferences": [],
-    "appointments": [],
 };
 
 export default class UserModel {
@@ -46,9 +45,10 @@ export default class UserModel {
      */
     async getUserById(userId) {
         const users = this.db.data.users;
-        delete users[userId].password;
-        delete users[userId].appointments;
-        return users[userId];
+        if (!users.hasOwnProperty(userId)) throw new ValidationError (`User with ${userId} not found`, 404);
+        const copy = JSON.parse(JSON.stringify(users[userId]));
+        delete copy.password;
+        return copy;
     }
 
     /**
@@ -79,7 +79,6 @@ export default class UserModel {
         if (!loggedInUser[0]) throw new ValidationError (`Login failed : user not found`, 404);
         const copy = JSON.parse(JSON.stringify(loggedInUser[0]));
         delete copy.password;
-        delete copy.appointments;
         return copy;
     }
 

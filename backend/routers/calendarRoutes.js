@@ -13,11 +13,16 @@ const controller = new CalendarController();
  * on retrouve 'id' dans req.params.id de la fonction userController.loadUserData (req, res)
  */
 router.get('/:userId/all', controller.getAllAppointments);
-
+router.get('/id/:eventId', controller.getAppointmentById);
+router.get('/generateId', controller.generateId);
 
 router.post('/:userId/add', controller.addAppointment);
 
-router.patch('/:userId/update', controller.updateAppointment);
+
+router.patch('/:userId/:eventId/update', controller.updateAppointment);
+
+
+
 
 
 

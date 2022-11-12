@@ -1,5 +1,6 @@
 import Validator from "validatorjs";
 import { ValidationError } from "../../errors/validationError.js";
+Validator.useLang('fr');
 
 
 
