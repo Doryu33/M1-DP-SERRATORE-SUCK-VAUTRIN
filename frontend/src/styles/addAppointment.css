@@ -45,3 +45,28 @@
     display: flex;
     flex-direction: column;
 }
+
+.containerButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttonValidate,
+.buttonCancel {
+    margin-top: 1em;
+    padding: 0.75em;
+    border: none;
+    outline: none;
+    background-color: #1c3879;
+    color: white;
+    border-radius: 0.25em;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.buttonValidate:hover,
+.buttonCancel:hover {
+    cursor: pointer;
+    background-color: #162d61;
+}

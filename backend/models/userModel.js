@@ -75,7 +75,7 @@ export default class UserModel {
     async findUserByLoginAndPassword(login, password) {
         const users = this.db.data.users;
         const usersArray = Object.values(users);
-        const loggedInUser = usersArray.filter(user => user.username === login && user.password === password);
+        const loggedInUser = usersArray.filter(user => user.username === login && user?.password === password);
         if (!loggedInUser[0]) throw new ValidationError (`Login failed : user not found`, 404);
         const copy = JSON.parse(JSON.stringify(loggedInUser[0]));
         delete copy.password;
