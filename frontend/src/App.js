@@ -9,10 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CustomCalendar />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/calendar" element={<CustomCalendar/>} />
+        <Route path="/calendar" element={<Home />} />
 
         {/*path="*" va vers l'accueil si l'url n'est pas reconnu*/}
         <Route path="*" element={<Login />} />
