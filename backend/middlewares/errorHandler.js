@@ -31,16 +31,3 @@ export function wrongRouteHandler(req, res) {
     }
   });
 }
-
-/**
- * Décrit l'erreur et le code à renvoyer au client
- * @param {Number} statusCode 
- * @param {String} message 
- * @param {Object} details 
- */
-export function throwError(statusCode, message, details) {
-  const error = new Error(message);
-  error.statusCode = statusCode;
-  error.details = details;
-  throw error;
-}

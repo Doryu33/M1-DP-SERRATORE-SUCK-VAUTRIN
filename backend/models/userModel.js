@@ -1,5 +1,4 @@
 import { initialize, generateID } from './model.js';
-import { throwError } from '../middlewares/errorHandler.js';
 import { registerValidation } from './validators/userValidator.js';
 
 const baseUser = {
@@ -30,12 +29,11 @@ export default class UserModel {
         const users = this.db.data.users;
         registerValidation(user);
 
-        if (Object.values(users).some(e => e.username === user.username)) throwError(400, "Username already used.");
+        if (Object.values(users).some(e => e.username === user.username))throw new ValidationError("Username already used.", 400);
         const newId = generateID();
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
         users[newId] = Object.assign(baseUser, user);
         users[newId].id = newId;
-
         await this.db.write()
         return newId;
     }
@@ -59,7 +57,7 @@ export default class UserModel {
      */
     async updateUser(userId, newUserData) {
         const users = this.db.data.users;
-        if (!users[userId]) throw new Error(`UserId ${userId} not found`);
+        if (!users[userId]) throw new ValidationError (`UserId ${userId} not found`, 404);
 
         Object.assign(users[userId], newUserData);
 
@@ -79,7 +77,7 @@ export default class UserModel {
         const loggedInUser = usersArray.filter(user => user.username === login && user.password === password);
         delete loggedInUser[0].password;
         delete loggedInUser[0].appointments;
-        if (!loggedInUser[0]) throwError(404, "User not found.");
+        if (!loggedInUser[0]) throw new ValidationError (`UserId ${userId} not found`, 404);
         return loggedInUser[0];
     }
 
@@ -87,4 +85,4 @@ export default class UserModel {
 }
 
 
-export { requiredFields, baseUser };
+export { baseUser };

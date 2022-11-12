@@ -1,5 +1,5 @@
-import { throwError } from "../../middlewares/errorHandler.js";
 import Validator from "validatorjs";
+import { ValidationError } from "../../errors/validationError.js";
 
 
 
@@ -20,6 +20,6 @@ export function registerValidation (newUser){
     validate.passes();
     const errors = validate.errors.all();
     if (Object.values(errors).length > 0){
-        throwError(422, "Invalid input(s)", errors);
+        throw new ValidationError("Invalid input(s)", 422, errors);
     }
 }

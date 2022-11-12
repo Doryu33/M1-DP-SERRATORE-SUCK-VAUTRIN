@@ -1,4 +1,5 @@
 import UserModel from '../models/userModel.js';
+import { ValidationError } from '../errors/validationError.js';
 
 /**
  * Controller qui traite des requêtes sur les utilisateurs
@@ -29,9 +30,7 @@ export default class UserController {
 
         // Si les données reçues sont vides on retourne une erreur
         if (Object.keys(json).length == 0 && json.constructor === Object) {
-            const error = new Error("Invalid or empty userdata");
-            error.statusCode = 400;
-            return next(error);
+            return next(new ValidationError("Invalid or empty userdata", 400));
         }
 
         try {
@@ -49,10 +48,11 @@ export default class UserController {
      * @returns 
      */
     loadUserData = async (req, res) => {
-        const userData = await this.model.getUserById(req.params.id);
-        if (!userData) return res.status(404).json({error: "User not found."});
+        const userData = await this.model.getUserById(req.params.userId);
+        if (!userData){
+            return res(new ValidationError(`User ${req.params.userId} does not exist`, 400));
+        }
         const copy = JSON.parse(JSON.stringify(userData));
-        
         return res.status(200).json(copy);
     }
 
@@ -63,12 +63,12 @@ export default class UserController {
      * @param {*} res 
      * @returns 
      */
-    updateUserData = async (req, res) => {
+    updateUserData = async (req, res, next) => {
         let userData;
         try{
-            userData = await this.model.updateUser(req.params.id, res.data.user);
+            userData = await this.model.updateUser(req.params.userId, res.data.user);
         }catch(error){
-            return res.status(404).json({error: error.message});
+            return next(error);
         }
         return res.status(200).json({user : userData})
     }
@@ -88,7 +88,7 @@ export default class UserController {
         const login = data.username;
 
         if (!password || !login){
-            return res.status(404).json({error: { message : 'Login ou mot de passe absent de la requête.'}});
+            return next (new ValidationError(`Invalid or missing password or username`, 404));
         }
 
         try{

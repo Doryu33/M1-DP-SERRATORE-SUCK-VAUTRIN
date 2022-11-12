@@ -5,7 +5,9 @@
       "username": "10",
       "email": "100@0.fr",
       "name": "1000",
-      "preferences": []
+      "password": "password",
+      "preferences": [],
+      "appointments": []
     },
     "7226070560": {
       "id": "7226070560",
@@ -31,6 +33,15 @@
       "password": "Bonjour54",
       "email": "hugo@gmail.com",
       "name": "HUgo",
+      "preferences": [],
+      "appointments": []
+    },
+    "119381117299": {
+      "id": "119381117299",
+      "username": "tesssst",
+      "password": "test",
+      "email": "test@fr.fr",
+      "name": "testest",
       "preferences": [],
       "appointments": []
     }
