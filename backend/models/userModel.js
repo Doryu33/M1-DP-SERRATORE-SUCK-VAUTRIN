@@ -1,6 +1,6 @@
 import { initialize, generateID } from './model.js';
 import { throwError } from '../middlewares/errorHandler.js';
-import { checkIfAllFieldsExist, registerValidation } from './validators/userValidator.js';
+import { registerValidation } from './validators/userValidator.js';
 
 const baseUser = {
     "id": null,
@@ -11,8 +11,6 @@ const baseUser = {
     "preferences": [],
     "appointments": [],
 };
-
-const requiredFields = ["username", "password", "email", "name"];
 
 export default class UserModel {
     constructor() {
@@ -30,7 +28,6 @@ export default class UserModel {
      */
     async addUser(user) {
         const users = this.db.data.users;
-        checkIfAllFieldsExist(user, requiredFields);
         registerValidation(user);
 
         if (Object.values(users).some(e => e.username === user.username)) throwError(400, "Username already used.");
