@@ -37,6 +37,12 @@ export default class CalendarController {
 
     updateAppointment = async (req, res, next) => {
         const json = req.body;
+        const userId = req.params?.userId;
+        const appointmentId = req.params?.appointmentId;
+
+        if (!userId || !appointmentId){
+            next(new ValidationError(`AppointmentId or UserId missing`, 400));
+        }
 
 
     }
