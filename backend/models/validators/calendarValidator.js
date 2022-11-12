@@ -1,19 +1,22 @@
 import { throwError } from "../../middlewares/errorHandler.js";
 import Validator from "validatorjs";
 
+const requiredFields = ["start", "end", "title", "description", "type", "reoccurrence-type"];
 
 
 /**
  * Vérifie la validité des champs
  * @param {Object} newUser 
  */
-export function registerValidation (newUser){
+export function addAppointmentValidation (newUser){
 
     const rules = {
-        username: 'required',
-        name: 'required',
-        email: 'required|email',
-        password: 'required'
+        title: 'required',
+        start: 'required',
+        end: 'required|',
+        description: 'required',
+        type : 'required',
+        reoccurence_type : 'required',
       };
 
     const validate = new Validator(newUser, rules);
