@@ -85,7 +85,7 @@ export default class UserController {
 
         try{
             const userFound = await this.model.findUserByLoginAndPassword(login, password);
-            return res.status(200).json({data: userFound});
+            return res.status(200).json(userFound);
         }catch(error){
             next(error);
         }

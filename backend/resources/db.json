@@ -57,11 +57,19 @@
       "preferences": []
     },
     "12126067371": {
-      "id": "12126067371",
-      "username": "hugeoeeer",
+      "id": "11994773520",
+      "username": "yome",
       "password": "test",
-      "email": "email@test.fr",
-      "name": "test",
+      "email": "om@fe.fr",
+      "name": "gui",
+      "preferences": []
+    },
+    "11994773520": {
+      "id": "11994773520",
+      "username": "yome",
+      "password": "test",
+      "email": "om@fe.fr",
+      "name": "gui",
       "preferences": []
     }
   },

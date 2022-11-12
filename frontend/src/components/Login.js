@@ -1,15 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
 import { NavLink, useNavigate } from 'react-router-dom';
 import network from '../configs/axiosParams';
+import { UserContext } from '../contexts/UserContext';
 
 const Login = () => {
+
+    const {user, setUser} = useContext(UserContext)
 
     const username = useRef("");
     const password = useRef("");
     const navigate = useNavigate();
+
+
+    useEffect(()=>{
+        // Si l'utilisateur est connecté, directon la page principale
+        if (user){
+            navigate('/');
+        }
+    }, [])
+
+
+
 
     const formHandler = () => (event) => {
         event.preventDefault();
@@ -33,9 +47,10 @@ const Login = () => {
                 localStorage.removeItem("userUsername");
                 localStorage.removeItem("userName");
                 const res = await sendForm(data);
-                localStorage.setItem("userEmail", JSON.stringify(res.data.data.email));
-                localStorage.setItem("userUsername", JSON.stringify(res.data.data.username));
-                localStorage.setItem("userName", JSON.stringify(res.data.data.name));
+                localStorage.setItem("userEmail", JSON.stringify(res.data.email));
+                localStorage.setItem("userUsername", JSON.stringify(res.data.username));
+                localStorage.setItem("userName", JSON.stringify(res.data.name));
+                setUser(res.data);
                 navigate('/');
 
             } catch (err) {

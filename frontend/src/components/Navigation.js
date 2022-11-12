@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import '../styles/navigation.css';
 import { NavLink } from 'react-router-dom';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { UserContext } from '../contexts/UserContext';
 
 const Navigation = () => {
 
-    const [pseudo, setPseudo] = useState("");
-
-    useEffect(() => {
-        let p = localStorage.getItem("userUsername");
-        setPseudo(p);
-    }, [pseudo]);
-
+    //const [pseudo, setPseudo] = useState("");
+    const { isDark, toggleTheme } = useContext(ThemeContext);
+    const { user } = useContext(UserContext);
+    /*
+        useEffect(() => {
+            let p = localStorage.getItem("userUsername");
+            setPseudo(p);
+            
+        }, [pseudo]);
+    */
     return (
-        <header className="navbar">
+
+        <header className="navbar" onClick={() => console.log(user)}>
             <div className="navbarLeft">
-                {pseudo ? (
+                {user ? (
                     <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <p>Calendrier</p>
                     </NavLink>
@@ -22,27 +28,32 @@ const Navigation = () => {
 
             </div>
             <div className="navbarRight">
-                {!pseudo ? (
+                {user?.username ? (
+                    <NavLink to="/logout" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <p>Déconnexion</p>
+                    </NavLink>
+                ) : (
+
                     <NavLink to="/login" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <p>Connexion</p>
                     </NavLink>
-                ) : (
-                    <>
-                        <NavLink to="/logout" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                            <p>Déconnexion</p>
-                        </NavLink>
-                    </>
+
                 )}
+                <NavLink to="#" className={(nav) => (nav.isActive ? "nav-active" : "")} onClick={toggleTheme}>
+                    <p>Thème</p>
+                </NavLink>
 
                 <NavLink to="/register" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <p>S'enregistrer</p>
                 </NavLink>
 
-                {pseudo ? (
+                {user?.username ? (
                     <NavLink to="/calendar" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <p>{pseudo}</p>
+                        <p>{user.username}</p>
                     </NavLink>
                 ) : (<> </>)}
+
+
             </div >
         </header >
     );

@@ -16,34 +16,30 @@ const Register = () => {
         event.preventDefault();
 
         (async () => {
-
-
-
-            const sendForm = async ({ username, password, name, email }) => {
-                try {
-                    const response = await network.post('/users/register', {
-                        username: username,
-                        password: password,
-                        name: name,
-                        email: email,
-                    });
-                    console.log(response);
-                    return response;
-
-                } catch (err) {
-                    console.log(err.response.data.error)
-                }
-            }
-
             const data = {
                 username: username.current?.value,
                 password: password.current?.value,
                 name: name.current?.value,
                 email: email.current?.value,
             };
-            const res = await sendForm(data);
 
+            const sendForm = async ({ username, password, name, email }) => {
+                const response = await network.post('/users/register', {
+                    username: username,
+                    password: password,
+                    name: name,
+                    email: email,
+                });
+                return response;
+            }
 
+            try {
+                const res = await sendForm(data);
+                console.log(res);
+
+            } catch (err) {
+                console.log(err.response.data.error)
+            }
         })();
 
     };
