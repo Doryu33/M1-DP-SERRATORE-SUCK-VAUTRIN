@@ -19,7 +19,7 @@ const Login = () => {
                     username: username,
                     password: password,
                 });
-                console.log("dans try " + response);
+                console.log("dans try ", response);
                 return response;
             }
 
@@ -30,9 +30,9 @@ const Login = () => {
 
             try {
                 const res = await sendForm(data);
-                console.log("en dehors " + res);
+                console.log("en dehors ", res);
             } catch (err) {
-                console.log(err.response);
+                console.log("erreur ", err.response);
             }
         })();
     }
