@@ -44,6 +44,15 @@
       "name": "testest",
       "preferences": [],
       "appointments": []
+    },
+    "76140109796": {
+      "id": "76140109796",
+      "username": "Hugs",
+      "password": "a",
+      "email": "hugo@gmail.cm",
+      "name": "Hugo",
+      "preferences": [],
+      "appointments": []
     }
   }
 }

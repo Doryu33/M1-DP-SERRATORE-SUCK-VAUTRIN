@@ -2,13 +2,14 @@ import React, { useRef } from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import network from '../configs/axiosParams';
 
 const Login = () => {
 
     const username = useRef("");
     const password = useRef("");
+    const navigate = useNavigate();
 
     const formHandler = () => (event) => {
         event.preventDefault();
@@ -19,7 +20,6 @@ const Login = () => {
                     username: username,
                     password: password,
                 });
-                console.log("dans try ", response);
                 return response;
             }
 
@@ -29,8 +29,15 @@ const Login = () => {
             };
 
             try {
+                localStorage.removeItem("userEmail");
+                localStorage.removeItem("userUsername");
+                localStorage.removeItem("userName");
                 const res = await sendForm(data);
-                console.log("en dehors ", res);
+                localStorage.setItem("userEmail", JSON.stringify(res.data.data.email));
+                localStorage.setItem("userUsername", JSON.stringify(res.data.data.username));
+                localStorage.setItem("userName", JSON.stringify(res.data.data.name));
+                navigate('/');
+
             } catch (err) {
                 console.log("erreur ", err.response);
             }
