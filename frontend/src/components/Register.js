@@ -98,7 +98,7 @@ const Register = () => {
                         required
                     />
 
-                    <button className="buttonRegister" type="submit">Envoyer</button>
+                    <button className="buttonRegister" type="submit">S'enregistrer</button>
                 </div>
 
                 <div>
