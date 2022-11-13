@@ -46,10 +46,12 @@ const Login = () => {
                 localStorage.removeItem("userEmail");
                 localStorage.removeItem("userUsername");
                 localStorage.removeItem("userName");
+                localStorage.removeItem("userId");
                 const res = await sendForm(data);
                 localStorage.setItem("userEmail", JSON.stringify(res.data.email));
                 localStorage.setItem("userUsername", JSON.stringify(res.data.username));
                 localStorage.setItem("userName", JSON.stringify(res.data.name));
+                localStorage.setItem("userId", JSON.stringify(res.data.id))
                 setUser(res.data);
                 navigate('/');
 

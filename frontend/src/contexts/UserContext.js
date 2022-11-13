@@ -9,14 +9,16 @@ function UserProvider({ children }) {
         let username = JSON.parse(localStorage.getItem("userUsername")) || null;
         let name = JSON.parse(localStorage.getItem("userName")) || null;
         let email = JSON.parse(localStorage.getItem("userEmail")) || null;
+        let id = JSON.parse(localStorage.getItem("userId")) || null;
 
-        if (!username || !email || !name) {
+        if (!username || !email || !name || !id) {
             return false
         }
         return {
             username: username,
             name: name,
-            email: email
+            email: email,
+            id: id
         }
     });
 

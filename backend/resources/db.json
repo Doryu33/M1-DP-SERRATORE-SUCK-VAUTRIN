@@ -86,14 +86,15 @@
         "invitedId": []
       }
     },
-    "525": {
-      "id": 1,
+    "300": {
+      "id": 300,
       "title": "test",
       "start": "2022-11-12T17:20:13.900Z",
       "end": "2022-11-12T17:21:13.900Z",
       "backgroundColor": "FF2D00",
       "extendedProps": {
         "description": "t",
+        "ownerId": "10",
         "invitedId": []
       }
     }

@@ -1,5 +1,5 @@
 import { initialize, generateID } from './model.js';
-import { addAppointmentValidation } from './validators/calendarValidator.js';
+import { appointmentValidation } from './validators/calendarValidator.js';
 import { ValidationError } from '../errors/validationError.js';
 
 const baseCalendar = {
@@ -31,12 +31,22 @@ export default class CalendarModel {
         if (userId == null || isNaN(userId) || !users.hasOwnProperty(userId)) {
             throw new ValidationError(`User not found or invalid user ID "${userId}".`, 404);
         }
-        addAppointmentValidation(appointment);
         const appointments = this.db.data.events;
+
+        // Génère un identifiant
+        let id = generateID();;
+        while (appointments.hasOwnProperty(id)) id = generateID();
+        appointment.id = id;
+
+
+        appointmentValidation(appointment);
 
         if (Object.values(appointments).some(e => e?.id === appointment.id)){
             throw new ValidationError(`Event id "${appointment.id}" already exists.`, 403);
         }
+
+        
+
 
 
         // Copie de la base du modèle et ajout des données nécessaire
@@ -84,21 +94,32 @@ export default class CalendarModel {
         if (!users.hasOwnProperty(userId)) throw new ValidationError(`User not found`, 404);
         if (!events.hasOwnProperty(eventId)) throw new ValidationError(`Event not found`, 404);
 
-
         if (events[eventId].extendedProps.ownerId != userId) throw new ValidationError("Update forbidden : user is not owner of event.", 403);
+        appointmentValidation(appointment);
 
-        delete appointment.extendedProps.ownerId;
+        if (appointment.extendedProps.hasOwnProperty("ownerId")) delete appointment.extendedProps.ownerId;
         const extension = Object.assign(events[eventId].extendedProps, appointment.extendedProps);
         events[eventId] = Object.assign(events[eventId], appointment);
         events[appointment.id].extendedProps = extension;
         await this.db.write()
     }
 
-    async generateID() {
-        const events = this.db.data.events;
-        let id = generateID();;
-        while (events.hasOwnProperty(id)) id = generateID();
-        return id;
 
+    /**
+     * Suppression d'un événement
+     * @param {*} userId 
+     * @param {*} eventId 
+     */
+    async deleteEvent (userId, eventId) {
+        const users = this.db.data.users;
+        const events = this.db.data.events;
+
+        if (!events.hasOwnProperty(eventId)) throw new ValidationError(`Event ${eventId} not found`, 404);
+        if (!users.hasOwnProperty(userId)) throw new ValidationError(`User ${userId} not found`, 404);
+
+        const targetedEvent = events[eventId];
+        if (targetedEvent.extendedProps.hasOwnProperty("ownerId") && targetedEvent.extendedProps.ownerId !== userId) throw new ValidationError(`User ${userId} is not allow to delete event ${eventId}`, 403);
+        delete events[eventId];
+        await this.db.write();
     }
 }

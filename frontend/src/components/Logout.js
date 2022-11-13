@@ -10,6 +10,7 @@ const Logout = () => {
         localStorage.removeItem("userEmail");
         localStorage.removeItem("userUsername");
         localStorage.removeItem("userName");
+        localStorage.removeItem("userId");
 
         console.log(user);
         setUser(false);

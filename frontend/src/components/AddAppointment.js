@@ -1,13 +1,70 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/addAppointment.css';
+import network from '../configs/axiosParams';
+import { UserContext } from '../contexts/UserContext';
 
-const AddAppointment = () => {
+const AddAppointment = ({ startDate, endDate }) => {
+
+    const { user } = useContext(UserContext);
+
+    const [event, setvalueevent] = useState({
+        title: "",
+        description: "",
+        backgroundColor: "#ff0000",
+        start: null,
+        end: null
+    });
+
+    const updateEventData = (e) => {
+        const val = e.target.value;
+        const name = e.target.name;
+
+        const updatedForm = {
+            ...event,
+            [name]: val,
+        };
+        setvalueevent(updatedForm)
+        console.log(updatedForm)
+    }
+
+    const formHandler = () => (e) => {
+        e.preventDefault();
+
+        (async () => {
+            const data = {
+                title: event.title,
+                start: startDate,
+                end: endDate,
+                backgroundColor: event.backgroundColor,
+                extendedProps: {
+                    description: event.description,
+                    ownerId: user.id
+                }
+            };
+
+            const sendForm = async (data) => {
+                const response = await network.post('/calendar/' + user.id + '/add', data);
+                return response;
+            }
+
+            try {
+                const res = await sendForm(data);
+                console.log(res);
+
+            } catch (err) {
+                console.log(err.response.data.error)
+            }
+        })();
+
+    };
+
+
     return (
-        <form className="formAddAppointment">
+        <form className="formAddAppointment" onSubmit={formHandler()}>
             <div className="container">
                 <h1 className="titleAddAppointment">Ajouter un rendez-vous</h1>
 
-                <label htmlFor="actuelDate" className="labelInfoAddAp"><b>Date du rendez-vous : "Date"</b></label>
+                <label htmlFor="actuelDate" className="labelInfoAddAp"><b>Date du rendez-vous : {startDate.toDateString()}</b></label>
 
                 <label htmlFor="title" className="labelInfoAddAp"><b>Titre</b></label>
                 <input className="inputTitle"
@@ -16,6 +73,7 @@ const AddAppointment = () => {
                     name="title"
                     id="title"
                     required
+                    onChange={(e) => updateEventData(e)}
                 />
 
                 <label htmlFor="description" className="labelInfoAddAp"><b>Description</b></label>
@@ -24,18 +82,20 @@ const AddAppointment = () => {
                     placeholder="Ecrivez la description"
                     name="description"
                     id="description"
+                    onChange={(e) => updateEventData(e)}
+
                 />
 
                 <div className="divType">
                     <div className="containerType">
                         <label htmlFor="type" className="labelInfoAddAp"><b>Type</b></label>
-                        <select className="inputType" name="type" id="type-select">
-                            <option value="red">Rouge</option>
-                            <option value="blue">Bleu</option>
-                            <option value="green">Vert</option>
-                            <option value="yellow">Jaune</option>
-                            <option value="purple">Violet</option>
-                            <option value="orange">Orange</option>
+                        <select className="inputType" name="backgroundColor" id="type-select" onChange={(e) => updateEventData(e)}>
+                            <option value="#ff0000">Rouge</option>
+                            <option value="#3366ff">Bleu</option>
+                            <option value="#00cc00">Vert</option>
+                            <option value="#ffcc00">Jaune</option>
+                            <option value="#9933ff">Violet</option>
+                            <option value="#ff9933">Orange</option>
                         </select>
                     </div>
                 </div>
