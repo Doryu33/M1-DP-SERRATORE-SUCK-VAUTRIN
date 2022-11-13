@@ -24,8 +24,6 @@ const CustomCalendar = () => {
         api.addEvent(event);
     };
 
-    var idi = 0;
-
     return (
         <div className='MainContainer'>
             <div className="CustomCalendar" >
@@ -47,12 +45,7 @@ const CustomCalendar = () => {
                             text: 'Ajouter un événement',
                             click: () => {
                                 setShowAddAppointment(true)
-                                /*onEventAdded({
-                                    id: idi++,
-                                    title: 'my event',
-                                    start: startDate,
-                                    end: endDate,
-                                })*/
+                                
                             },
                         },
                     }}
@@ -68,7 +61,7 @@ const CustomCalendar = () => {
                     }}
                 />
             </div>
-            { showAddAppointment ? <AddAppointment/> : null }
+            { showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate}/> : null }
         </div>
     );
 };
