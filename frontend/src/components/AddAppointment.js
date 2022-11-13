@@ -109,7 +109,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
 
                 <div className="containerButtons">
                     <button className="buttonValidate" type="submit">Ajouter</button>
-                    <button className="buttonCancel">Annuler</button>
+                    <button className="buttonCancel"onClick={(e) => setShowAddAppointment(false)}>Annuler</button>
                 </div>
             </div>
         </form>
