@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/appointment.css';
 
-const ModifyAppointment = () => {
+const ModifyAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
     return (
         <form className="formAddAppointment">
             <div className="container">

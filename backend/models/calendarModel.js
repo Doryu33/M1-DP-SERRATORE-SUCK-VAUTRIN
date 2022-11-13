@@ -1,4 +1,4 @@
-import { initialize, generateID } from './model.js';
+import { initialize, generateID, copyBase } from './model.js';
 import { appointmentValidation } from './validators/calendarValidator.js';
 import { ValidationError } from '../errors/validationError.js';
 
@@ -14,8 +14,6 @@ const baseCalendar = {
         invitedId: [],
     }
 }
-
-
 
 
 export default class CalendarModel {
@@ -34,25 +32,19 @@ export default class CalendarModel {
         const appointments = this.db.data.events;
 
         // Génère un identifiant
-        let id = generateID();;
-        while (appointments.hasOwnProperty(id)) id = generateID();
+        let id = generateID();
         appointment.id = id;
-
-
         appointmentValidation(appointment);
 
         if (Object.values(appointments).some(e => e?.id === appointment.id)){
             throw new ValidationError(`Event id "${appointment.id}" already exists.`, 403);
         }
 
-        
-
-
-
         // Copie de la base du modèle et ajout des données nécessaire
+        const base = copyBase(baseCalendar);
         appointment.extendedProps.ownerId = userId;
-        const extension = Object.assign(baseCalendar.extendedProps, appointment.extendedProps);
-        appointments[appointment.id] = Object.assign(baseCalendar, appointment);
+        const extension = Object.assign(base.extendedProps, appointment.extendedProps);
+        appointments[appointment.id] = Object.assign(base, appointment);
         appointments[appointment.id].extendedProps = extension;
         await this.db.write()
     }
