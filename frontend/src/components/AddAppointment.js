@@ -24,7 +24,6 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
             [name]: val,
         };
         setvalueevent(updatedForm)
-        console.log(updatedForm)
     }
 
     const formHandler = () => (e) => {
@@ -49,7 +48,6 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
 
             try {
                 const res = await sendForm(data);
-                console.log(res);
                 setShowAddAppointment(false);
             } catch (err) {
                 console.log(err.response.data.error)

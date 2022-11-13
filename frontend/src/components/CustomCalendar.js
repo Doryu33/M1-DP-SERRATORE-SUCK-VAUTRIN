@@ -16,7 +16,7 @@ const CustomCalendar = () => {
     const { user } = useContext(UserContext);
 
     const [showAddAppointment, setShowAddAppointment] = React.useState(false);
-    const [showModifyAppointment, setModifyAppointment] = React.useState(false);
+    const [showModifyAppointment, setShowModifyAppointment] = React.useState(false);
 
     const calendarRef = React.createRef();
 
@@ -24,6 +24,7 @@ const CustomCalendar = () => {
     const [endDate, setEndDate] = useState(new Date())
 
     const [events, setEvents] = useState([]);
+    const [targetedEvent, setTargetEvent] = useState(null);
 
     const onEventAdded = (e) => {
         const api = calendarRef.current.getApi();
@@ -38,13 +39,11 @@ const CustomCalendar = () => {
 
         try {
             const res = await getData();
-            console.log(res.data);
             setEvents(res.data);
-            console.log("event:"+events);
         } catch (err) {
             console.log(err.response.data.error)
         }
-    })();}, [showAddAppointment] );
+    })();}, [showAddAppointment,showModifyAppointment] );
 
     return (
 
@@ -67,12 +66,18 @@ const CustomCalendar = () => {
                         new: {
                             text: 'Ajouter un événement',
                             click: () => {
-                                setShowAddAppointment(true) 
+                                setShowAddAppointment(true);
+                                setShowModifyAppointment(false);
                             },
                         },
                     }}
                     events={events}
-                    eventClick={(e) => alert(e.event.id)}
+                    eventClick={(e) => {
+                        setShowModifyAppointment(false);
+                        setTargetEvent(e.event);
+                        setShowModifyAppointment(true);
+                        setShowAddAppointment(false);
+                    }}
 
                     //dateClick={(e) => console.log(e.dateStr)}
 
@@ -84,7 +89,7 @@ const CustomCalendar = () => {
                 />
             </div>
             { showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate} setShowAddAppointment={setShowAddAppointment}/> : null }
-            { showModifyAppointment ? <ModifyAppointment startDate={startDate} endDate={endDate} setModifyAppointment={setModifyAppointment}/> : null }
+            { showModifyAppointment ? <ModifyAppointment startDate={startDate} endDate={endDate} targetedEvent={targetedEvent} setTargetEvent={setTargetEvent} setShowModifyAppointment={setShowModifyAppointment} showModifyAppointment={showModifyAppointment}/> : null }
         </div>
     );
 };
