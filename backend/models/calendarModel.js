@@ -68,7 +68,7 @@ export default class CalendarModel {
             throw new ValidationError(`User not found or invalid user ID "${userId}".`, 400);
         }
         const appointments = this.db.data.events;
-        const eventsFiltered = Object.values(appointments).filter(event => event?.extendedProps?.owner == userId || event?.extendedProps?.invitedId == userId)
+        const eventsFiltered = Object.values(appointments).filter(event => event?.extendedProps?.ownerId == userId || event?.extendedProps?.invitedId == userId)
         const copy = JSON.parse(JSON.stringify(eventsFiltered));
         return copy;
     }
