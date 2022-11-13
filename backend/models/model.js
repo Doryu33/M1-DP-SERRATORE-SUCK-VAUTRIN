@@ -40,3 +40,6 @@ export function generateID(){
     return generateNumber()+generateNumber();
 }
 
+export function copyBase (object){
+    return JSON.parse(JSON.stringify(object));
+}
