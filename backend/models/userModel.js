@@ -1,4 +1,4 @@
-import { initialize, generateID } from './model.js';
+import { initialize, generateID, copyBase } from './model.js';
 import { registerValidation } from './validators/userValidator.js';
 import { ValidationError } from '../errors/validationError.js';
 
@@ -32,7 +32,8 @@ export default class UserModel {
         if (Object.values(users).some(e => e.username === user.username))throw new ValidationError("Username already used.", 400);
         const newId = generateID();
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
-        users[newId] = Object.assign(baseUser, user);
+        const base = copyBase(baseUser);
+        users[newId] = Object.assign(base, user);
         users[newId].id = newId;
         await this.db.write()
         return newId;
@@ -84,6 +85,3 @@ export default class UserModel {
 
 
 }
-
-
-export { baseUser };
