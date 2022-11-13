@@ -10,10 +10,12 @@ import AddAppointment from './AddAppointment';
 import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
 import ModifyAppointment from './ModifyAppointment';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const CustomCalendar = () => {
 
     const { user } = useContext(UserContext);
+    const { isDark } = useContext(ThemeContext);
 
     const [showAddAppointment, setShowAddAppointment] = React.useState(false);
     const [showModifyAppointment, setShowModifyAppointment] = React.useState(false);
@@ -31,23 +33,79 @@ const CustomCalendar = () => {
         api.addEvent(e);
     };
 
-    useEffect(() => {(async () => {
-        const getData = async () => {
-            const response = await network.get('/calendar/' + user.id + '/all');
+    useEffect(() => {
+        (async () => {
+            const getData = async () => {
+                const response = await network.get('/calendar/' + user.id + '/all');
+                return response;
+            }
+
+            try {
+                const res = await getData();
+                setEvents(res.data);
+            } catch (err) {
+                console.log(err.response.data.error)
+            }
+        })();
+    }, [showAddAppointment, showModifyAppointment, user.id]);
+
+
+
+    const updateTargetedEvent = (e) =>{
+        const val = e.target.value;
+        const name = e.target.name;
+
+        let update;
+        if (name === "description"){
+            update = {
+                ...targetedEvent,
+                "extendedProps": {
+                    ...targetedEvent.extendedProps,
+                    [name] : val,
+                },
+            };
+        }else{
+            update = {
+                ...targetedEvent,
+                [name]: val,
+            };
+        }
+        setTargetEvent(update)
+    }
+
+
+    const updateEventInBackend = (e) =>{
+        e.preventDefault();
+
+        const update = async () => {
+            const response = await network.patch(`/calendar/${user.id}/${targetedEvent.id}/update`, 
+            {
+                ...targetedEvent,
+                start: startDate.toISOString(),
+                end: endDate.toISOString()
+            }
+            );
             return response;
         }
 
-        try {
-            const res = await getData();
-            setEvents(res.data);
-        } catch (err) {
-            console.log(err.response.data.error)
-        }
-    })();}, [showAddAppointment,showModifyAppointment] );
+        (async () => {
+           
+
+            try {
+                await update();
+                setShowModifyAppointment(false);
+            } catch (err) {
+                console.log(err.response.data.error)
+            }
+        })();
+    }
+
+
+
 
     return (
 
-        <div className='MainContainer'>
+        <div className={isDark ? 'MainContainer dark' : "MainContainer"}>
             <div className="CustomCalendar" >
                 <p>Date de debut: {startDate.toISOString()}</p>
                 <p>Date de fin: {endDate.toISOString()}</p>
@@ -74,7 +132,17 @@ const CustomCalendar = () => {
                     events={events}
                     eventClick={(e) => {
                         setShowModifyAppointment(false);
-                        setTargetEvent(e.event);
+  
+
+                        setTargetEvent({
+                            extendedProps: e.event.extendedProps,
+                            title: e.event.title,
+                            backgroundColor: e.event.backgroundColor,
+                            id: e.event.id,
+                        });
+
+                        
+                        //console.log(targetedEvent);
                         setShowModifyAppointment(true);
                         setShowAddAppointment(false);
                     }}
@@ -88,8 +156,16 @@ const CustomCalendar = () => {
                     }}
                 />
             </div>
-            { showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate} setShowAddAppointment={setShowAddAppointment}/> : null }
-            { showModifyAppointment ? <ModifyAppointment startDate={startDate} endDate={endDate} targetedEvent={targetedEvent} setTargetEvent={setTargetEvent} setShowModifyAppointment={setShowModifyAppointment} showModifyAppointment={showModifyAppointment}/> : null }
+            {showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate} setShowAddAppointment={setShowAddAppointment} /> : null}
+            {showModifyAppointment ? <ModifyAppointment
+                startDate={startDate}
+                endDate={endDate}
+                targetedEvent={targetedEvent}
+                setTargetEvent={setTargetEvent}
+                setShowModifyAppointment={setShowModifyAppointment}
+                handleForm={updateTargetedEvent}
+                updateBackend= {updateEventInBackend}
+            /> : null}
         </div>
     );
 };

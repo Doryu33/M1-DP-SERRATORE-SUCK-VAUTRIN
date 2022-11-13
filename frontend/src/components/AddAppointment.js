@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import '../styles/appointment.css';
 import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
 
     const { user } = useContext(UserContext);
+    const { isDark } = useContext(ThemeContext);
 
     const [event, setvalueevent] = useState({
         title: "",
@@ -47,7 +49,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
             }
 
             try {
-                const res = await sendForm(data);
+                await sendForm(data);
                 setShowAddAppointment(false);
             } catch (err) {
                 console.log(err.response.data.error)
@@ -58,7 +60,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
 
 
     return (
-        <form className="formAddAppointment" onSubmit={formHandler()}>
+        <form className={isDark ? "formAddAppointment dark" : "formAddAppointment"} onSubmit={formHandler()}>
             <div className="container">
                 <h1 className="titleAddAppointment">Ajouter un rendez-vous</h1>
 

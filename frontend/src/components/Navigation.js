@@ -6,19 +6,12 @@ import { UserContext } from '../contexts/UserContext';
 
 const Navigation = () => {
 
-    //const [pseudo, setPseudo] = useState("");
     const { isDark, toggleTheme } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
-    /*
-        useEffect(() => {
-            let p = localStorage.getItem("userUsername");
-            setPseudo(p);
-            
-        }, [pseudo]);
-    */
+
     return (
 
-        <header className="navbar" onClick={() => console.log(user)}>
+        <header className={isDark ? "navbar dark" : "navbar"}>
             <div className="navbarLeft">
                 {user ? (
                     <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "")}>

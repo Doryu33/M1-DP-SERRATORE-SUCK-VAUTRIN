@@ -3,7 +3,11 @@
     max-height: 100vw;
     width: 100vw;
     padding: 16px;
+}
 
+.dark .CustomCalendar {
+    background-color: rgb(26, 22, 22);
+    color: white;
 }
 
 h2{

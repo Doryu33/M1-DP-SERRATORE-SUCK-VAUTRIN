@@ -1,3 +1,7 @@
+.dark.navbar {
+    background-color: #0c1731;
+}
+
 .navbar {
     overflow: hidden;
     background-color: #1C3879;
@@ -20,6 +24,10 @@
     text-decoration: none;
     font-weight: normal;
     font-size: 22px;
+}
+.dark .navbarRight a,
+.dark .navbarLeft a {
+    color: #dfdfdf
 }
 
 .navbarRight a {

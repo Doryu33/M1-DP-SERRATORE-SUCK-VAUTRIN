@@ -1,18 +1,34 @@
+.dark.formAddAppointment{
+    background-color: rgb(26, 22, 22);
+    color: white;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     width: 21vw;
 }
 
+
+
 .labelInfoAddAp {
     color: #1C3879;
     padding-bottom: 5px;
+}
+
+.dark .labelInfoAddAp {
+    color: #517ee6;
 }
 
 .titleAddAppointment {
     text-align: center;
     color: #1C3879;
 }
+
+.dark .titleAddAppointment {
+    color: #517ee6;
+}
+
 
 .inputTitle,
 .inputDescription,
@@ -24,6 +40,18 @@
     border: none;
     background-color: rgb(225, 225, 225);
     border-radius: 0.25em;
+}
+
+.dark .inputTitle,
+.dark .inputDescription,
+.dark .inputDuration,
+.dark .inputType {
+    background-color: black;
+    color: white;
+}
+
+.dark input[type='radio']{
+    accent-color: #517ee6;
 }
 
 .inputDescription {

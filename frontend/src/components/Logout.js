@@ -4,7 +4,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const Logout = () => {
     const navigate = useNavigate();
-    const {user, setUser} = useContext(UserContext)
+    const {setUser} = useContext(UserContext)
 
     useEffect(() => {
         localStorage.removeItem("userEmail");
@@ -12,7 +12,6 @@ const Logout = () => {
         localStorage.removeItem("userName");
         localStorage.removeItem("userId");
 
-        console.log(user);
         setUser(false);
         
         navigate('/login');
