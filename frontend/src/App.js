@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import AllAppointments from './components/AllAppointments';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { UserProvider } from './contexts/UserContext';
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/calendar" element={<Home />} />
+            <Route path="/allAppointment" element={<AllAppointments />} />
 
             {/*path="*" va vers l'accueil si l'url n'est pas reconnu*/}
             <Route path="*" element={<Login />} />

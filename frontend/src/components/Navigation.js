@@ -33,24 +33,24 @@ const Navigation = () => {
                         <p>Déconnexion</p>
                     </NavLink>
                 ) : (
-
                     <NavLink to="/login" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                         <p>Connexion</p>
                     </NavLink>
-
                 )}
 
-                <NavLink to="/register" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                    <p>S'enregistrer</p>
-                </NavLink>
+                {user?.username ? (<> </>) : (
+                    <NavLink to="/register" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <p>S'enregistrer</p>
+                    </NavLink>
+                )}
 
                 <NavLink to="#" className={(nav) => (nav.isActive ? "nav-active" : "")} onClick={toggleTheme}>
                     <p>Thème</p>
                 </NavLink>
 
                 {user?.username ? (
-                    <NavLink to="/calendar" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <p>{user.username}</p>
+                    <NavLink to="/allAppointment" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <p>{user.username + " : tous mes RDV"}</p>
                     </NavLink>
                 ) : (<> </>)}
 
