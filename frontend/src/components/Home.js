@@ -11,7 +11,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Si l'utilisateur est connecté, directon la page principale
+        // Si l'utilisateur n'est pas connecté, directon vers la page de login
         if (!user) {
             navigate('/login');
         }
