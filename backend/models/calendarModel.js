@@ -31,6 +31,7 @@ export default class CalendarModel {
         if (userId == null || isNaN(userId) || !users.hasOwnProperty(userId)) {
             throw new ValidationError(`User not found or invalid user ID "${userId}".`, 404);
         }
+        const appointments = this.db.data.events;
 
         // Génère un identifiant
         let id = generateID();;
@@ -39,7 +40,6 @@ export default class CalendarModel {
 
 
         appointmentValidation(appointment);
-        const appointments = this.db.data.events;
 
         if (Object.values(appointments).some(e => e?.id === appointment.id)){
             throw new ValidationError(`Event id "${appointment.id}" already exists.`, 403);
