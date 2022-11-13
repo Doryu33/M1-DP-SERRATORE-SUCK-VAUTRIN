@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import '../styles/addAppointment.css';
+import '../styles/appointment.css';
 import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
 
