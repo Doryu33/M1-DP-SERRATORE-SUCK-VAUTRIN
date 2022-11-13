@@ -3,7 +3,7 @@ import '../styles/addAppointment.css';
 import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
 
-const AddAppointment = ({ startDate, endDate }) => {
+const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
 
     const { user } = useContext(UserContext);
 
@@ -50,7 +50,7 @@ const AddAppointment = ({ startDate, endDate }) => {
             try {
                 const res = await sendForm(data);
                 console.log(res);
-
+                setShowAddAppointment(false);
             } catch (err) {
                 console.log(err.response.data.error)
             }
