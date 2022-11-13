@@ -9,12 +9,14 @@ import '../styles/customCalendar.css';
 import AddAppointment from './AddAppointment';
 import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
+import ModifyAppointment from './ModifyAppointment';
 
 const CustomCalendar = () => {
 
     const { user } = useContext(UserContext);
 
-    const [showAddAppointment, setShowAddAppointment] = React.useState(false)
+    const [showAddAppointment, setShowAddAppointment] = React.useState(false);
+    const [showModifyAppointment, setModifyAppointment] = React.useState(false);
 
     const calendarRef = React.createRef();
 
@@ -65,13 +67,12 @@ const CustomCalendar = () => {
                         new: {
                             text: 'Ajouter un événement',
                             click: () => {
-                                setShowAddAppointment(true)
-                                
+                                setShowAddAppointment(true) 
                             },
                         },
                     }}
                     events={events}
-                    //eventClick={(e) => console.log(e.event.id)}
+                    eventClick={(e) => alert(e.event.id)}
 
                     //dateClick={(e) => console.log(e.dateStr)}
 
@@ -83,6 +84,7 @@ const CustomCalendar = () => {
                 />
             </div>
             { showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate} setShowAddAppointment={setShowAddAppointment}/> : null }
+            { showModifyAppointment ? <ModifyAppointment startDate={startDate} endDate={endDate} setModifyAppointment={setModifyAppointment}/> : null }
         </div>
     );
 };
