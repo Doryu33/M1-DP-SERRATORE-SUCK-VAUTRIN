@@ -29,11 +29,32 @@ export default class CalendarController {
         // Si les données reçues sont vides on retourne une erreur
         try {
             verifyJsonBody(json, next);
-            const appointmentId = await this.model.addAppointment(req.params.userId, json);
+            await this.model.addAppointment(req.params.userId, json);
             return res.status(200).json(true);
         } catch (err) {
             return next(err);
         }
+    }
+
+
+    deleteAppointment = async (req, res, next) => {
+        const userId = req.params.userId;
+        const eventId = req.params.eventId;
+
+        try{
+            if (userId == null || isNaN(userId)) {
+                throw new ValidationError(`Invalid user ID "${userId}".`, 400);
+            }
+            if (eventId == null || isNaN(eventId)) {
+                throw new ValidationError(`Invalid event ID "${eventId}".`, 400);
+            }
+
+            await this.model.deleteEvent(userId, eventId);
+            return res.status(200).json(true);
+        } catch (error){
+            return next(error);
+        }
+
     }
 
 
@@ -67,7 +88,7 @@ export default class CalendarController {
         const eventId = req.params?.eventId;
         try {
             if (userId == null || isNaN(userId)) {
-                throw new ValidationError(`Invalid event ID "${userId}".`, 400);
+                throw new ValidationError(`Invalid user ID "${userId}".`, 400);
             }
             if (eventId == null || isNaN(eventId)) {
                 throw new ValidationError(`Invalid event ID "${eventId}".`, 400);
@@ -78,23 +99,6 @@ export default class CalendarController {
             return res.status(200).json(true);
         } catch (e) {
             return next(e);
-        }
-    }
-
-    /**
-     * Génère un identifiant
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
-     * @returns Number / String
-     */
-    generateId = async (req, res, next) => {
-        try {
-            const id = await this.model.generateID();
-            return res.status(200).json({ id: id });
-
-        } catch (error) {
-            next(error);
         }
     }
 

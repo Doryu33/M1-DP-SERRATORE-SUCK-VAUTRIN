@@ -14,10 +14,10 @@ const controller = new CalendarController();
  */
 router.get('/:userId/all', controller.getAllAppointments);
 router.get('/id/:eventId', controller.getAppointmentById);
-router.get('/generateId', controller.generateId);
 
 router.post('/:userId/add', controller.addAppointment);
 
+router.delete('/:userId/:eventId/delete', controller.deleteAppointment)
 
 router.patch('/:userId/:eventId/update', controller.updateAppointment);
 
