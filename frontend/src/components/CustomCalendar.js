@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useState, useContext } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -7,8 +7,12 @@ import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import '../styles/customCalendar.css';
 import AddAppointment from './AddAppointment';
+import network from '../configs/axiosParams';
+import { UserContext } from '../contexts/UserContext';
 
 const CustomCalendar = () => {
+
+    const { user } = useContext(UserContext);
 
     const [showAddAppointment, setShowAddAppointment] = React.useState(false)
 
@@ -24,7 +28,43 @@ const CustomCalendar = () => {
         api.addEvent(event);
     };
 
+    const getEvent = () => (e) => {
+        (async () => {
+            const getData = async () => {
+                const response = await network.get('/calendar/' + user.id + '/all');
+                return response;
+            }
+
+            try {
+                const res = await getData();
+                console.log("CEST PAS BON");
+                console.log(res);
+                setEvents(res);
+            } catch (err) {
+                console.log(err.response.data.error)
+            }
+        })();
+
+    };
+
+    useEffect(() => {(async () => {
+        const getData = async () => {
+            const response = await network.get('/calendar/' + user.id + '/all');
+            return response;
+        }
+
+        try {
+            const res = await getData();
+            console.log("CEST PAS BON");
+            console.log(res);
+            setEvents(res);
+        } catch (err) {
+            console.log(err.response.data.error)
+        }
+    })();}, [] );
+
     return (
+
         <div className='MainContainer'>
             <div className="CustomCalendar" >
                 <p>Date de debut: {startDate.toISOString()}</p>
@@ -61,7 +101,7 @@ const CustomCalendar = () => {
                     }}
                 />
             </div>
-            { showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate}/> : null }
+            { showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate} setShowAddAppointment={setShowAddAppointment}/> : null }
         </div>
     );
 };
