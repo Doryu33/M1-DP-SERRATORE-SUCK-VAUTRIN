@@ -26,6 +26,11 @@ const Navigation = () => {
                     </NavLink>
                 ) : (<> </>)}
 
+                {user?.username ? (
+                    <NavLink to="/allAppointment" className={(nav) => (nav.isActive ? "nav-active" : "")}>
+                        <p>{user.username + " : tous mes RDV"}</p>
+                    </NavLink>
+                ) : (<> </>)}
             </div>
             <div className="navbarRight">
                 {user?.username ? (
@@ -47,14 +52,6 @@ const Navigation = () => {
                 <NavLink to="#" className={(nav) => (nav.isActive ? "nav-active" : "")} onClick={toggleTheme}>
                     <p>Thème</p>
                 </NavLink>
-
-                {user?.username ? (
-                    <NavLink to="/allAppointment" className={(nav) => (nav.isActive ? "nav-active" : "")}>
-                        <p>{user.username + " : tous mes RDV"}</p>
-                    </NavLink>
-                ) : (<> </>)}
-
-
             </div >
         </header >
     );
