@@ -23,28 +23,9 @@ const CustomCalendar = () => {
 
     const [events, setEvents] = useState([]);
 
-    const onEventAdded = (event) => {
+    const onEventAdded = (e) => {
         const api = calendarRef.current.getApi();
-        api.addEvent(event);
-    };
-
-    const getEvent = () => (e) => {
-        (async () => {
-            const getData = async () => {
-                const response = await network.get('/calendar/' + user.id + '/all');
-                return response;
-            }
-
-            try {
-                const res = await getData();
-                console.log("CEST PAS BON");
-                console.log(res);
-                setEvents(res);
-            } catch (err) {
-                console.log(err.response.data.error)
-            }
-        })();
-
+        api.addEvent(e);
     };
 
     useEffect(() => {(async () => {
@@ -55,13 +36,13 @@ const CustomCalendar = () => {
 
         try {
             const res = await getData();
-            console.log("CEST PAS BON");
-            console.log(res);
-            setEvents(res);
+            console.log(res.data);
+            setEvents(res.data);
+            console.log("event:"+events);
         } catch (err) {
             console.log(err.response.data.error)
         }
-    })();}, [] );
+    })();}, [showAddAppointment] );
 
     return (
 
