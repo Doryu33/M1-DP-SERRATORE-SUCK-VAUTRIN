@@ -39,12 +39,13 @@ const Navigation = () => {
                     </NavLink>
 
                 )}
-                <NavLink to="#" className={(nav) => (nav.isActive ? "nav-active" : "")} onClick={toggleTheme}>
-                    <p>Thème</p>
-                </NavLink>
 
                 <NavLink to="/register" className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <p>S'enregistrer</p>
+                </NavLink>
+
+                <NavLink to="#" className={(nav) => (nav.isActive ? "nav-active" : "")} onClick={toggleTheme}>
+                    <p>Thème</p>
                 </NavLink>
 
                 {user?.username ? (

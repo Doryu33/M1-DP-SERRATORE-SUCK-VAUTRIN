@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useContext, useEffect, } from 'react';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
-import AddAppointment from './AddAppointment';
 import CustomCalendar from './CustomCalendar';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 
 const Home = () => {
+
+    const { user, setUser } = useContext(UserContext)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Si l'utilisateur n'est pas connecté, directon vers la page de login
+        if (!user) {
+            navigate('/login');
+        }
+    }, [])
+
     return (
         <div>
             <Helmet>
