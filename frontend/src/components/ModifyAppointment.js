@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import '../styles/appointment.css';
 import { UserContext } from '../contexts/UserContext';
-import network from '../configs/axiosParams';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { deleteEvent } from '../configs/events';
 
