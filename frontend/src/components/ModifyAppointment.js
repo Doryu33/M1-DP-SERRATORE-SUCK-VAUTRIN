@@ -3,6 +3,7 @@ import '../styles/appointment.css';
 import { UserContext } from '../contexts/UserContext';
 import network from '../configs/axiosParams';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { deleteEvent } from '../configs/events';
 
 
 
@@ -13,19 +14,13 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
     const deleteAppointment = (e) => {
         e.preventDefault();
         (async () => {
-            const send = async () => {
-                const response = await network.delete('/calendar/' + user.id + '/' + targetedEvent.id + '/delete');
-                console.log(response);
-                return response;
-            }
             try {
-                await send();
+                await deleteEvent(user.id, targetedEvent.id);
                 setShowModifyAppointment(false);
             } catch (err) {
                 console.log(err.response.data.error)
             }
         })();
-
     };
 
 

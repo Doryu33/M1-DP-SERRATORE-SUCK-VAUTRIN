@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -11,6 +10,8 @@ import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
 import ModifyAppointment from './ModifyAppointment';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { getAllEvents } from '../configs/events';
+
 
 const CustomCalendar = () => {
 
@@ -20,6 +21,7 @@ const CustomCalendar = () => {
     const [showAddAppointment, setShowAddAppointment] = React.useState(false);
     const [showModifyAppointment, setShowModifyAppointment] = React.useState(false);
 
+
     const calendarRef = React.createRef();
 
     const [startDate, setStartDate] = useState(new Date())
@@ -28,27 +30,23 @@ const CustomCalendar = () => {
     const [events, setEvents] = useState([]);
     const [targetedEvent, setTargetEvent] = useState(null);
 
+    /*
     const onEventAdded = (e) => {
         const api = calendarRef.current.getApi();
         api.addEvent(e);
-    };
+    };*/
 
+    
     useEffect(() => {
         (async () => {
-            const getData = async () => {
-                const response = await network.get('/calendar/' + user.id + '/all');
-                return response;
-            }
-
             try {
-                const res = await getData();
+                const res = await getAllEvents(user.id);
                 setEvents(res.data);
             } catch (err) {
                 console.log(err.response.data.error)
             }
         })();
     }, [showAddAppointment, showModifyAppointment, user.id]);
-
 
 
     const updateTargetedEvent = (e) =>{
@@ -132,17 +130,12 @@ const CustomCalendar = () => {
                     events={events}
                     eventClick={(e) => {
                         setShowModifyAppointment(false);
-  
-
                         setTargetEvent({
                             extendedProps: e.event.extendedProps,
                             title: e.event.title,
                             backgroundColor: e.event.backgroundColor,
                             id: e.event.id,
                         });
-
-                        
-                        //console.log(targetedEvent);
                         setShowModifyAppointment(true);
                         setShowAddAppointment(false);
                     }}
