@@ -4,7 +4,7 @@ import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
 import { ThemeContext } from '../contexts/ThemeContext';
 
-const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
+const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
 
     const { user } = useContext(UserContext);
     const { isDark } = useContext(ThemeContext);
@@ -64,8 +64,11 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
             <div className="container">
                 <h1 className="titleAddAppointment">Ajouter un rendez-vous</h1>
 
-                <label htmlFor="actuelDate" className="labelInfoAddAp"><b>Date du rendez-vous : {startDate.toDateString()}</b></label>
-
+                <p className="labelInfoAddAp">
+                    <b>Début :</b> {startDate.toLocaleString('fr-FR')}
+                    <br/>
+                    <b>Fin :</b> {endDate.toLocaleString('fr-FR')}
+                </p>
                 <label htmlFor="title" className="labelInfoAddAp"><b>Titre</b></label>
                 <input className="inputTitle"
                     type="text"
@@ -109,7 +112,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment}) => {
 
                 <div className="containerButtons">
                     <button className="buttonValidate" type="submit">Ajouter</button>
-                    <button className="buttonCancel"onClick={(e) => setShowAddAppointment(false)}>Annuler</button>
+                    <button className="buttonCancel" onClick={(e) => setShowAddAppointment(false)}>Annuler</button>
                 </div>
             </div>
         </form>

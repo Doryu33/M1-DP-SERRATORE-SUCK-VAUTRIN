@@ -105,8 +105,6 @@ const CustomCalendar = () => {
 
         <div className={isDark ? 'MainContainer dark' : "MainContainer"}>
             <div className="CustomCalendar" >
-                <p>Date de debut: {startDate.toISOString()}</p>
-                <p>Date de fin: {endDate.toISOString()}</p>
                 <FullCalendar
                     //Reference du calendar
                     ref={calendarRef}
