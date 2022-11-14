@@ -5,6 +5,7 @@
   "main": "concurrently  -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" ",
   "type": "module",
   "scripts": {
+    "postinstall": "concurrently -c \"auto\" \"cd frontend && npm install\" \"cd backend && npm install\" ",
     "dev": "concurrently -c \"auto\" --kill-others --kill-others-on-fail \"cd backend && npm run dev\" \"cd frontend && npm run dev\" ",
     "start": "concurrently -c \"auto\"  --kill-others --kill-others-on-fail \"cd backend && npm run start\" \"cd frontend && npm run start\" "
   },
