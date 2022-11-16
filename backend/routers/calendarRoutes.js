@@ -12,8 +12,10 @@ const controller = new CalendarController();
  * site.com/users/12121235321 pour obtenir les données de l'utilisateur à l'identifiant correspondant.
  * on retrouve 'id' dans req.params.id de la fonction userController.loadUserData (req, res)
  */
-router.get('/:userId/all', controller.getAllAppointments);
+router.get('/:userId/all/', controller.getAllAppointments);
 router.get('/id/:eventId', controller.getAppointmentById);
+
+//router.get('/:userId/options', controller.getAllEventsBetweenDate)
 
 router.post('/:userId/add', controller.addAppointment);
 

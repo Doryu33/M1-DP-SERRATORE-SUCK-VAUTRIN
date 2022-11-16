@@ -81,7 +81,8 @@
 }
 
 .buttonValidate,
-.buttonCancel {
+.buttonCancel,
+.buttonDelete {
     margin-top: 1em;
     padding: 0.75em;
     border: none;
@@ -93,8 +94,17 @@
     margin-left: 20px;
 }
 
+.buttonDelete{
+    background-color: #791c1c;
+}
+
 .buttonValidate:hover,
-.buttonCancel:hover {
+.buttonCancel:hover,
+.buttonDelete:hover {
     cursor: pointer;
     background-color: #162d61;
+}
+
+.buttonDelete:hover {
+    background-color: #611616;
 }

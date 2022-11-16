@@ -3,6 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+}
+
+.dark.formLogin,
+.dark.formRegister {
+    background-color: rgb(26, 22, 22);
+    color: white;
 }
 
 .container {
@@ -19,8 +26,18 @@
     color: #1C3879;
 }
 
+.dark .titleRegister,
+.dark .titleLogin,
+.dark .pAlreadyAccount,
+.dark .pNoAccount {
+    color: #3367e0;
+}
 .labelInfo {
     color: #1C3879;
+}
+
+.dark .labelInfo {
+    color: #3367e0;
 }
 
 .loginRedirection:visited,
@@ -32,6 +49,13 @@
 .registerRedirection:hover {
     color: #1C3879;
 }
+
+.dark .loginRedirection:hover,
+.dark .registerRedirection:hover {
+    color: #2b56b9;
+}
+
+
 
 .loginRedirection:active,
 .registerRedirection:active {

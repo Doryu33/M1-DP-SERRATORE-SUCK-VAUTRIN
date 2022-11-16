@@ -1,12 +1,26 @@
-import React, { useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
 import network from '../configs/axiosParams';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
+import ErrorHandler from './ErrorHandler';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Register = () => {
+    const { user } = useContext(UserContext);
+    const { isDark } = useContext(ThemeContext);
+    const navigate = useNavigate();
 
+    useEffect(()=>{
+        // Si l'utilisateur est connecté, directon la page principale
+        if (user){
+            navigate('/');
+        }
+    }, [])
+
+    const [error, setError] = useState(false);
     const username = useRef("");
     const password = useRef("");
     const name = useRef("");
@@ -35,10 +49,10 @@ const Register = () => {
 
             try {
                 const res = await sendForm(data);
-                console.log(res);
 
             } catch (err) {
                 console.log(err.response.data.error)
+                setError(err.response.data.error);
             }
         })();
 
@@ -50,7 +64,7 @@ const Register = () => {
                 <title>S'enregistrer</title>
             </Helmet>
             <Navigation />
-            <form className="formRegister" onSubmit={formHandler()}>
+            <form className={isDark ? "formRegister dark" : "formRegister"} onSubmit={formHandler()}>
                 <div className="container">
                     <h1 className="titleRegister">Créer un compte</h1>
 
@@ -95,6 +109,13 @@ const Register = () => {
                     />
 
                     <button className="buttonRegister" type="submit">S'enregistrer</button>
+
+                    {
+                        error ? 
+                        <ErrorHandler message={error.message} details={error.details} /> 
+                        :
+                        <></>
+                    }
                 </div>
 
                 <div>

@@ -65,9 +65,9 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                 <h1 className="titleAddAppointment">Ajouter un rendez-vous</h1>
 
                 <p className="labelInfoAddAp">
-                    <b>Début :</b> {startDate.toLocaleString('fr-FR')}
+                    <b>Début :</b> {startDate.toLocaleString('fr-FR').slice(0, -3)}
                     <br/>
-                    <b>Fin :</b> {endDate.toLocaleString('fr-FR')}
+                    <b>Fin :</b> {endDate.toLocaleString('fr-FR').slice(0, -3)}
                 </p>
                 <label htmlFor="title" className="labelInfoAddAp"><b>Titre</b></label>
                 <input className="inputTitle"

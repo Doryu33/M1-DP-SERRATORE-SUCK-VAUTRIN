@@ -1,14 +1,19 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import '../styles/register&login.css';
 import { Helmet } from "react-helmet";
 import Navigation from './Navigation';
 import { NavLink, useNavigate } from 'react-router-dom';
 import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
+import ErrorHandler from './ErrorHandler';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Login = () => {
 
     const {user, setUser} = useContext(UserContext)
+    const { isDark } = useContext(ThemeContext);
+
+    const [error, setError] = useState(false)
 
     const username = useRef("");
     const password = useRef("");
@@ -56,7 +61,8 @@ const Login = () => {
                 navigate('/');
 
             } catch (err) {
-                console.log("erreur ", err.response);
+                console.log("erreur ", err.response.data.error);
+                setError(err.response.data.error);
             }
         })();
     }
@@ -68,7 +74,7 @@ const Login = () => {
             </Helmet>
             <Navigation />
 
-            <form className="formLogin" onSubmit={formHandler()}>
+            <form className={isDark ? "formLogin dark" : "formLogin" }onSubmit={formHandler()}>
                 <div className="container">
                     <h1 className="titleLogin">Se connecter</h1>
 
@@ -84,13 +90,20 @@ const Login = () => {
 
                     <label htmlFor="password" className="labelInfo"><b>Mot de passe</b></label>
                     <input className="inputLogin"
-                        type="text"
+                        type="password"
                         ref={password}
                         placeholder="Entrer votre mot de passe"
                         name="password"
                         id="password"
                         required
                     />
+
+                    {
+                        error ? 
+                        <ErrorHandler message={error.message} /> 
+                        :
+                        <></>
+                    }
 
                     <button className="buttonLogin" type="submit">Se connecter</button>
                 </div>

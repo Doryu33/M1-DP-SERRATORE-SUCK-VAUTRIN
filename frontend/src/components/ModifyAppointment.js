@@ -25,12 +25,12 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
 
 
     return (
-        <form className="formAddAppointment" onSubmit={(e) => updateBackend(e)}>
-            <div className={isDark ? "container dark" : "container"}>
+        <form className={isDark ? "formAddAppointment dark" : "formAddAppointment"} onSubmit={(e) => updateBackend(e)}>
+            <div className="container">
                 <h1 className="titleAddAppointment">Modifier le rendez-vous</h1>
 
                 <label htmlFor="actuelDate" className="labelInfoAddAp">
-                    <b>Rendez-vous entre le {startDate.toLocaleString('fr-FR')} et le {endDate.toLocaleString('fr-FR')}
+                    <b>Rendez-vous entre le {startDate.toLocaleString('fr-FR').slice(0, -3)} et le {endDate.toLocaleString('fr-FR').slice(0, -3)}
                     </b></label>
 
                 <label htmlFor="title" className="labelInfoAddAp"><b>Titre</b></label>
