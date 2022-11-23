@@ -1,15 +1,18 @@
-import { initialize, generateID, copyBase } from './model.js';
+import { initialize, generateID } from './model.js';
 import { registerValidation } from './validators/userValidator.js';
 import { ValidationError } from '../errors/validationError.js';
 
-const baseUser = {
-    "id": null,
-    "username": null,
-    "password": null,
-    "email": null,
-    "name": null,
-    "preferences": [],
-};
+const baseUser = () => {
+    return JSON.parse(JSON.stringify({
+        "id": null,
+        "username": null,
+        "password": null,
+        "email": null,
+        "name": null,
+        "preferences": [],
+    }))
+}
+
 
 export default class UserModel {
     constructor() {
@@ -29,10 +32,10 @@ export default class UserModel {
         const users = this.db.data.users;
         registerValidation(user);
 
-        if (Object.values(users).some(e => e.username === user.username))throw new ValidationError("Username already used.", 400);
+        if (Object.values(users).some(e => e.username === user.username)) throw new ValidationError("Username already used.", 400);
         const newId = generateID();
         // Utilise le format de base d'un utilisateur pour s'assurer que tous les champs existent dans la db
-        const base = copyBase(baseUser);
+        const base = baseUser();
         users[newId] = Object.assign(base, user);
         users[newId].id = newId;
         await this.db.write()
@@ -46,7 +49,7 @@ export default class UserModel {
      */
     async getUserById(userId) {
         const users = this.db.data.users;
-        if (!users.hasOwnProperty(userId)) throw new ValidationError (`User with ${userId} not found`, 404);
+        if (!users.hasOwnProperty(userId)) throw new ValidationError(`User with ${userId} not found`, 404);
         const copy = JSON.parse(JSON.stringify(users[userId]));
         delete copy.password;
         return copy;
@@ -59,7 +62,7 @@ export default class UserModel {
      */
     async updateUser(userId, newUserData) {
         const users = this.db.data.users;
-        if (!users[userId]) throw new ValidationError (`UserId ${userId} not found`, 404);
+        if (!users[userId]) throw new ValidationError(`UserId ${userId} not found`, 404);
 
         Object.assign(users[userId], newUserData);
 
@@ -77,7 +80,7 @@ export default class UserModel {
         const users = this.db.data.users;
         const usersArray = Object.values(users);
         const loggedInUser = usersArray.filter(user => user.username === login && user?.password === password);
-        if (!loggedInUser[0]) throw new ValidationError (`Login failed : user not found`, 404);
+        if (!loggedInUser[0]) throw new ValidationError(`Login failed : user not found`, 404);
         const copy = JSON.parse(JSON.stringify(loggedInUser[0]));
         delete copy.password;
         return copy;

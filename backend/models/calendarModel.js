@@ -1,18 +1,20 @@
-import { initialize, generateID, copyBase } from './model.js';
+import { initialize, generateID } from './model.js';
 import { appointmentValidation } from './validators/calendarValidator.js';
 import { ValidationError } from '../errors/validationError.js';
 
-const baseCalendar = {
-    id: null,
-    title: null,
-    start: null,
-    end: null,
-    backgroundColor: null,
-    extendedProps: {
-        description: null,
-        ownerId: null,
-        invitedId: [],
-    }
+const baseCalendar = () => {
+    return JSON.parse(JSON.stringify({
+        id: null,
+        title: null,
+        start: null,
+        end: null,
+        backgroundColor: null,
+        extendedProps: {
+            description: null,
+            ownerId: null,
+            invitedId: [],
+        }
+    }));
 }
 
 
@@ -36,12 +38,12 @@ export default class CalendarModel {
         appointment.id = id;
         appointmentValidation(appointment);
 
-        if (Object.values(appointments).some(e => e?.id === appointment.id)){
+        if (Object.values(appointments).some(e => e?.id === appointment.id)) {
             throw new ValidationError(`Event id "${appointment.id}" already exists.`, 403);
         }
 
         // Copie de la base du modèle et ajout des données nécessaire
-        const base = copyBase(baseCalendar);
+        const base = baseCalendar();
         appointment.extendedProps.ownerId = userId;
         const extension = Object.assign(base.extendedProps, appointment.extendedProps);
         appointments[appointment.id] = Object.assign(base, appointment);
@@ -78,8 +80,8 @@ export default class CalendarModel {
     }
 
 
-    async updateAppointment (userId, eventId, appointment){
-        
+    async updateAppointment(userId, eventId, appointment) {
+
         const events = this.db.data.events;
         const users = this.db.data.users;
 
@@ -102,7 +104,7 @@ export default class CalendarModel {
      * @param {*} userId 
      * @param {*} eventId 
      */
-    async deleteEvent (userId, eventId) {
+    async deleteEvent(userId, eventId) {
         const users = this.db.data.users;
         const events = this.db.data.events;
 
