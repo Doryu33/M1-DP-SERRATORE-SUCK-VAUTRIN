@@ -105,15 +105,12 @@ export default class CalendarModel {
      * @param {*} eventId 
      */
     async deleteEvent(userId, eventId) {
-        const users = this.db.data.users;
-        const events = this.db.data.events;
-
-        if (!events.hasOwnProperty(eventId)) throw new ValidationError(`Event ${eventId} not found`, 404);
-        if (!users.hasOwnProperty(userId)) throw new ValidationError(`User ${userId} not found`, 404);
-
-        const targetedEvent = events[eventId];
-        if (targetedEvent.extendedProps.hasOwnProperty("ownerId") && targetedEvent.extendedProps.ownerId !== userId) throw new ValidationError(`User ${userId} is not allow to delete event ${eventId}`, 403);
-        delete events[eventId];
+        const user = this.db.data.users[userId];
+        if (!user) throw new ValidationError(`User ${userId} not found`, 404);
+        const event = this.db.data.events[eventId];
+        if (!event) throw new ValidationError(`Event ${eventId} not found`, 404);
+        if (event.extendedProps.hasOwnProperty("ownerId") && event.extendedProps.ownerId !== userId) throw new ValidationError(`User ${userId} is not allow to delete event ${eventId}`, 403);
+        delete this.db.data.events[eventId];
         await this.db.write();
     }
 }

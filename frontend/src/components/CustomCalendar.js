@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import rrulePlugin from '@fullcalendar/rrule';
+
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import '../styles/customCalendar.css';
@@ -111,7 +113,7 @@ const CustomCalendar = () => {
                     //Indicateur de la date actuelle
                     nowIndicator
                     locale={frLocale}
-                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, rrulePlugin]}
                     initialView="dayGridMonth"
                     headerToolbar={{
                         center: 'timeGridDay,timeGridWeek,dayGridMonth new',

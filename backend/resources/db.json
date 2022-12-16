@@ -133,6 +133,18 @@
         "ownerId": "122134106804",
         "invitedId": []
       }
+    },
+    "10281674250": {
+      "id": "10281674250",
+      "title": "test r",
+      "start": "2022-12-06T23:00:00.000Z",
+      "end": "2022-12-07T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "restes",
+        "ownerId": "122134106804",
+        "invitedId": []
+      }
     }
   }
 }
