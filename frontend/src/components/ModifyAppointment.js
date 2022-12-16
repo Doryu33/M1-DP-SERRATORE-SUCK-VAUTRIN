@@ -10,6 +10,8 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
     const { user } = useContext(UserContext);
     const { isDark } = useContext(ThemeContext);
 
+
+
     const deleteAppointment = (e) => {
         e.preventDefault();
         (async () => {

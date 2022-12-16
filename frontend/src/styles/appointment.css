@@ -29,6 +29,25 @@
     color: #517ee6;
 }
 
+.divReoccur {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+}
+
+.divReoccur div {
+    padding-bottom: 0.5rem;
+}
+
+.divWeekdayCheckbox {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: baseline;
+}
+
+.divWeekdayCheckbox label {
+    padding-left: 0.7rem;
+}
 
 .inputTitle,
 .inputDescription,

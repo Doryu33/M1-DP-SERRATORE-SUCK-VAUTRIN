@@ -38,7 +38,7 @@ const validateReoccurence = (event) => {
             if (rules.hasOwnProperty("byweekday")) delete rules.byweekday;
         break;
     }
-    event.rules = rules;
+    event.rrule = rules;
     return event;
 }
 

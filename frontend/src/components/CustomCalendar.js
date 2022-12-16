@@ -56,20 +56,19 @@ const CustomCalendar = () => {
         const name = e.target.name;
 
         let update;
-        if (name === "description"){
+        
             update = {
                 ...targetedEvent,
                 "extendedProps": {
                     ...targetedEvent.extendedProps,
                     [name] : val,
                 },
+                "rrule": {
+                    ...targetedEvent.rrule,
+                    [name] : val,
+                }
             };
-        }else{
-            update = {
-                ...targetedEvent,
-                [name]: val,
-            };
-        }
+        
         setTargetEvent(update)
     }
 

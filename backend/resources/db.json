@@ -225,6 +225,75 @@
         "ownerId": "122134106804",
         "invitedId": []
       }
+    },
+    "109996114402": {
+      "id": "109996114402",
+      "title": "ezfds",
+      "start": "2022-12-16T21:01:17.505Z",
+      "end": "2022-12-16T21:01:17.505Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "sdf",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "until": "2022-12-15T23:59:00.000Z",
+        "freq": "daily",
+        "byweekday": [],
+        "dtstart": "2022-12-16T21:01:17.505Z",
+        "interval": 1
+      },
+      "rules": {
+        "until": "2022-12-15T23:59:00.000Z",
+        "freq": "daily",
+        "byweekday": [],
+        "dtstart": "2022-12-16T21:01:17.505Z",
+        "interval": 1
+      }
+    },
+    "10017498295": {
+      "id": "10017498295",
+      "title": "rzes",
+      "start": "2022-12-16T21:14:19.610Z",
+      "end": "2022-12-16T21:14:19.610Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "sdcx",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "freq": "monthly",
+        "dtstart": "2022-12-16T21:14:19.610Z",
+        "interval": 1
+      },
+      "rules": {
+        "freq": "monthly",
+        "dtstart": "2022-12-16T21:14:19.610Z",
+        "interval": 1
+      }
+    },
+    "6884390580": {
+      "id": "6884390580",
+      "title": "test refacti",
+      "start": "2022-12-14T23:00:00.000Z",
+      "end": "2022-12-15T23:00:00.000Z",
+      "backgroundColor": "#ffcc00",
+      "extendedProps": {
+        "description": "",
+        "ownerId": "122134106804",
+        "invitedId": [],
+        "freq": "daily"
+      },
+      "rrule": {
+        "until": "2022-12-21",
+        "freq": "daily",
+        "byweekday": [],
+        "dtstart": "2022-12-14T23:00:00.000Z",
+        "interval": 1
+      },
+      "freq": "daily"
     }
   }
 }

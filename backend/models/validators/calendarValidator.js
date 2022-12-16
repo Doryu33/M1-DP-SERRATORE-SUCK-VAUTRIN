@@ -22,7 +22,7 @@ const reoccurenceRule = {
     interval: "integer",
     byweekday: "array",
     dtstart: "required|date", 
-    until: "date|after_or_equal:dtstart"
+    until: "date"
       
 }
 
