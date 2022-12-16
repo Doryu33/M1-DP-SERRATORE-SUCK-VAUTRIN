@@ -120,6 +120,16 @@
         "description": "boire",
         "ownerId": "122134106804",
         "invitedId": []
+      },
+      "rrule": {
+        "freq": "daily",
+        "interval": 2,
+        "byweekday": [
+          "mo",
+          "fr"
+        ],
+        "dtstart": "2021-02-01T10:30:00",
+        "until": "2023-06-01"
       }
     },
     "79127113593": {
@@ -142,6 +152,76 @@
       "backgroundColor": "#ff0000",
       "extendedProps": {
         "description": "restes",
+        "ownerId": "122134106804",
+        "invitedId": []
+      }
+    },
+    "9034083936": {
+      "id": "9034083936",
+      "title": "teeeeeees",
+      "start": "2022-12-01T23:00:00.000Z",
+      "end": "2022-12-02T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "jhgkuyjhb",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "freq": "daily",
+        "interval": 2,
+        "byweekday": [
+          "mo",
+          "fr"
+        ],
+        "dtstart": "2021-02-01T10:30:00",
+        "until": "2023-06-01"
+      }
+    },
+    "86693116306": {
+      "id": "86693116306",
+      "title": "bvcghn",
+      "start": "2022-12-26T23:00:00.000Z",
+      "end": "2022-12-27T23:00:00.000Z",
+      "backgroundColor": "#3366ff",
+      "extendedProps": {
+        "description": "khgb,n",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "freq": "monthly",
+        "interval": 1,
+        "dtstart": "2021-02-03T10:30:00",
+        "until": "2023-06-01"
+      }
+    },
+    "117779117817": {
+      "id": "117779117817",
+      "title": "sdfvbgdhefsdgfrdfgxbdsqvbfgf",
+      "start": "2022-11-29T23:00:00.000Z",
+      "end": "2022-11-30T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "erdfg ,grfesdgbh",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "freq": "monthly",
+        "interval": 1,
+        "dtstart": "2021-02-01T10:30:00",
+        "until": "2023-06-01"
+      }
+    },
+    "11269693243": {
+      "id": "11269693243",
+      "title": "retest",
+      "start": "2022-11-29T23:00:00.000Z",
+      "end": "2022-11-30T23:00:00.000Z",
+      "backgroundColor": "#9933ff",
+      "extendedProps": {
+        "description": "terst",
         "ownerId": "122134106804",
         "invitedId": []
       }

@@ -1,5 +1,5 @@
 import { initialize, generateID } from './model.js';
-import { appointmentValidation } from './validators/calendarValidator.js';
+import { appointmentValidation, reoccurenceValidation } from './validators/calendarValidator.js';
 import { ValidationError } from '../errors/validationError.js';
 
 const baseCalendar = () => {
@@ -14,8 +14,35 @@ const baseCalendar = () => {
             ownerId: null,
             invitedId: [],
         }
+        // accepte aussi l'objet 'rrule' pour définir la réccurence
     }));
 }
+
+
+const validateReoccurence = (event) => {
+    reoccurenceValidation(event.rrule);
+
+    const rules = event.rrule;
+    rules.interval = 1;
+    switch (rules.freq){
+        case "daily":
+        case "weekly":
+            
+            if (rules.hasOwnProperty("byweekday")){
+                if (rules.byweekday.length > 7){
+                    throw new ValidationError(`Too many weekdays specified in array.`, 400);
+                }
+            }
+            break;
+        case "monthly":
+            if (rules.hasOwnProperty("byweekday")) delete rules.byweekday;
+        break;
+    }
+    event.rules = rules;
+    return event;
+}
+
+
 
 
 export default class CalendarModel {
@@ -36,7 +63,13 @@ export default class CalendarModel {
         // Génère un identifiant
         let id = generateID();
         appointment.id = id;
+
+        
         appointmentValidation(appointment);
+        if (appointment.hasOwnProperty('rrule')){
+            validateReoccurence(appointment);
+        }
+
 
         if (Object.values(appointments).some(e => e?.id === appointment.id)) {
             throw new ValidationError(`Event id "${appointment.id}" already exists.`, 403);
@@ -90,6 +123,10 @@ export default class CalendarModel {
 
         if (events[eventId].extendedProps.ownerId != userId) throw new ValidationError("Update forbidden : user is not owner of event.", 403);
         appointmentValidation(appointment);
+        if (appointment.hasOwnProperty('rrule')){
+            validateReoccurence(appointment);
+        }
+
 
         if (appointment.extendedProps.hasOwnProperty("ownerId")) delete appointment.extendedProps.ownerId;
         const extension = Object.assign(events[eventId].extendedProps, appointment.extendedProps);

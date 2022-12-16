@@ -8,11 +8,23 @@ const rules = {
     start: 'required|date',
     end: 'required|date',
     extendedProps: {
-        description: "required",
+        description: "string",
+    },
+    rrule : {
+
     },
     backgroundColor: 'required|size:7',
 }
 
+
+const reoccurenceRule = {
+    freq: "required|string",
+    interval: "integer",
+    byweekday: "array",
+    dtstart: "required|date", 
+    until: "date|after_or_equal:dtstart"
+      
+}
 
 /**
  * Vérifie la validité des champs
@@ -25,5 +37,19 @@ export function appointmentValidation(newAppointment) {
     const errors = validate.errors.all();
     if (Object.values(errors).length > 0) {
         throw new ValidationError("Invalid input(s)", 422, errors);
+    }
+}
+
+
+/**
+ * Vérifie la validité du contenu de l'objet
+ * @param {Object} ruleset 
+ */
+export function reoccurenceValidation (ruleset){
+    const validate = new Validator(ruleset, reoccurenceRule);
+    validate.passes();
+    const errors = validate.errors.all();
+    if (Object.values(errors).length > 0){
+        throw new ValidationError("Rules are not valid", 422, errors);
     }
 }
