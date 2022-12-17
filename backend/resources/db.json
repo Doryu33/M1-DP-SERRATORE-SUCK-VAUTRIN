@@ -74,15 +74,69 @@
     }
   },
   "events": {
-    "1": {
-      "id": 1,
-      "title": "test",
-      "start": "2022-11-12T17:20:13.900Z",
-      "end": "2022-11-12T17:21:13.900Z",
-      "backgroundColor": "FF2D00",
+    "114864111931": {
+      "id": "114864111931",
+      "title": "rest",
+      "start": "2022-11-30T23:00:00.000Z",
+      "end": "2022-12-01T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
       "extendedProps": {
-        "description": "t",
-        "ownerId": 10,
+        "description": "test",
+        "ownerId": "122134106804",
+        "invitedId": []
+      }
+    },
+    "75320101725": {
+      "id": "75320101725",
+      "title": "nouveau test",
+      "start": "2022-12-12T23:00:00.000Z",
+      "end": "2022-12-13T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "byweekday": [
+          "mo"
+        ],
+        "freq": "weekly",
+        "dtstart": "2022-12-12T23:00:00.000Z",
+        "until": "2022-12-20",
+        "interval": 1
+      }
+    },
+    "9601072269": {
+      "id": "9601072269",
+      "title": "test",
+      "start": "2022-12-12T23:00:00.000Z",
+      "end": "2022-12-13T23:00:00.000Z",
+      "backgroundColor": "#00cc00",
+      "extendedProps": {
+        "description": "test",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "byweekday": [
+          "mo"
+        ],
+        "freq": "daily",
+        "dtstart": "2022-12-12T23:00:00.000Z",
+        "until": "",
+        "interval": 1
+      }
+    },
+    "8697770023": {
+      "id": "8697770023",
+      "title": "test",
+      "start": "2022-12-15T23:00:00.000Z",
+      "end": "2022-12-16T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "teeest",
+        "ownerId": "122134106804",
         "invitedId": []
       }
     }

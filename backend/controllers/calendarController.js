@@ -67,13 +67,14 @@ export default class CalendarController {
      */
     getAppointmentById = async (req, res, next) => {
         const eventId = req.params?.eventId;
+        const userId = req.params?.userId;
 
-        if (!eventId) {
+        if (!eventId || !userId) {
             next(new ValidationError(`eventId and/or UserId missing`, 400));
         }
 
         try {
-            const result = await this.model.getAppointmentById(eventId);
+            const result = await this.model.getAppointmentById(userId, eventId);
             return res.status(200).json(result);
         } catch (error) {
             next(error);
