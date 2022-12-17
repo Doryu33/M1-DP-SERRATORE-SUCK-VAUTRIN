@@ -52,7 +52,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
 
 
 
-    const handleCheckboxes = (e, index) => {
+    const handleCheckboxes = (index) => {
         const copy = [...checked];
         copy[index] = !checked[index];
         setChecked([...copy]);
@@ -66,7 +66,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
         });
         setRules({
             ...rules,
-            ['byweekday']: value,
+            'byweekday': value,
         });
     }
 
@@ -86,8 +86,8 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
     const loadEvent = async () => {
         const response = await getEventByID(user.id, targetedEvent)
         const data = response.data;
-        console.log(data)
 
+        setReoccuring(data.hasOwnProperty("rrule"));
         let loaded = {
             title: data.title,
             start: data.start,
@@ -104,7 +104,13 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
                 dtstart: data.start,
                 until: data.rrule.until ? data.rrule.until : "",
             });
-            setReoccuring(() => true)
+            const bwd = data.rrule.byweekday ? data.rrule.byweekday : [];
+            const chck = [];
+            weekdays.forEach((day) =>{
+                chck.push(bwd.includes(day.value));
+            })
+            setChecked(chck);
+            
         }
         setCurrentEvent(loaded);
     }
@@ -162,7 +168,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
 
 
     useEffect(() => {
-        loadEvent()
+        loadEvent();
     }, [targetedEvent])
 
 
@@ -218,9 +224,9 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
                 <label htmlFor="recurring" className="labelInfoAddAp">
                     <input
                         type="checkbox"
-                        name="reccuring"
+                        name="recurring"
                         className="inputType"
-                        value={isReoccuring}
+                        checked={isReoccuring}
                         onChange={() => {
                             setReoccuring(!isReoccuring)
                         }}
@@ -248,6 +254,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
                                                         name="freq"
                                                         value={f.value}
                                                         onChange={(e) => updateRules(e)}
+                                                        checked={rules.freq === f.value}
                                                     />
                                                     {f.label}
                                                 </label>

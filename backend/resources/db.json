@@ -127,6 +127,18 @@
         "until": "",
         "interval": 1
       }
+    },
+    "8697770023": {
+      "id": "8697770023",
+      "title": "test",
+      "start": "2022-12-15T23:00:00.000Z",
+      "end": "2022-12-16T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "teeest",
+        "ownerId": "122134106804",
+        "invitedId": []
+      }
     }
   }
 }
