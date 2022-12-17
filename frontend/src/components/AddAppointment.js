@@ -60,7 +60,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                     ownerId: user.id,
                 },
             }
-            if (isReoccuring){
+            if (isReoccuring) {
                 data.rrule = {
                     until: untilDate,
                     freq: event.freq,
@@ -68,7 +68,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                     dtstart: startDate
                 };
             };
-                
+
 
             if (data.rrule.until === "") delete data.rrule.until;
 
@@ -158,7 +158,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                         value=""
                         onChange={handleReoccuring}
                     />
-                    <label htmlFor="non_reoccuring">Non récurrent</label>
+                    <label htmlFor="non_reoccuring" >Non récurrent</label>
                     <input
                         type="radio"
                         name="recurrent"
@@ -170,8 +170,8 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
 
                 {isReoccuring ? (
                     <div className="divReoccur">
-                        <div htmlFor="frequence" className="divFrequence">
-                            <label htmlFor="frequence" className="labelFrequence">
+                        <div htmlFor="frequence">
+                            <label htmlFor="frequence" className="labelInfoAddAp">
                                 <b>Fréquence</b>
                             </label>
                             <div>
@@ -193,15 +193,15 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                             </div>
                         </div>
 
-                        <div htmlFor="byWeekDay" className="divByWeekDay">
-                            <label htmlFor="byWeekDay" className="labelByWeekDay">
+                        <div htmlFor="byWeekDay" >
+                            <label htmlFor="byWeekDay" className="labelInfoAddAp">
                                 <b>Jour de la semaine</b>
                             </label>
                             <div className="divWeekdayCheckbox">
                                 {
                                     weekdays.map(day => (
 
-                                        <label htmlFor={day.value} key={day.key}>
+                                        <label htmlFor={day.value} key={day.key} >
                                             <input type="checkbox" name="byweekday" value={day.value} />
                                             {day.day}
                                         </label>
@@ -211,7 +211,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                             </div>
 
                             <div htmlFor="endDate" className="divEndDate">
-                                <label htmlFor="endDate" className="labelEndDate">
+                                <label htmlFor="endDate" className="labelInfoAddAp">
                                     <b>Date de fin</b>
                                 </label>
                                 <div>
