@@ -3,16 +3,12 @@ import "../styles/appointment.css";
 import network from "../configs/axiosParams";
 import { UserContext } from "../contexts/UserContext";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { weekdays, frequency } from "../configs/weekdays";
+import Occurence from "./Occurence";
 
 const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
     const { user } = useContext(UserContext);
     const { isDark } = useContext(ThemeContext);
-    const [isReoccuring, setReoccuring] = useState();
-
-    const handleReoccuring = (e) => {
-        setReoccuring(e.target.value);
-    };
+    const [isReoccuring, setReoccuring] = useState(false);
 
     const [untilDate, setUntilDate] = useState("")
 
@@ -43,6 +39,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
             ...event,
             [name]: val,
         };
+        console.log(event)
         setvalueevent(updatedForm);
     };
 
@@ -50,6 +47,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
         e.preventDefault();
 
         (async () => {
+            const formData = new FormData(e.target);
             const data = {
                 title: event.title,
                 start: startDate,
@@ -60,17 +58,17 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                     ownerId: user.id,
                 },
             }
-            if (isReoccuring){
+            if (isReoccuring) {
                 data.rrule = {
                     until: untilDate,
                     freq: event.freq,
-                    byweekday: event.byweekday,
+                    byweekday: formData.getAll('byweekday'),
                     dtstart: startDate
                 };
-            };
-                
+            };            
 
-            if (data.rrule.until === "") delete data.rrule.until;
+
+            if ('rrule' in data && 'until' in data.rrule && data.rrule.until === "") delete data.rrule.until;
 
             const sendForm = async (data) => {
                 const response = await network.post(
@@ -148,79 +146,31 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                     </div>
                 </div>
 
-                <label htmlFor="recurring" className="labelInfoAddAp">
+                <label className="labelInfoAddAp">
                     <b>Récurrence</b>
                 </label>
-                <div>
-                    <input
-                        type="radio"
-                        name="recurrent"
-                        value=""
-                        onChange={handleReoccuring}
+
+                <label htmlFor="recurring" className="labelInfoAddAp">
+                <input
+                        type="checkbox"
+                        name="reccuring"
+                        className="inputType"
+                        value={isReoccuring}
+                        onChange={()=>{setReoccuring(!isReoccuring)}}
                     />
-                    <label htmlFor="non_reoccuring">Non récurrent</label>
-                    <input
-                        type="radio"
-                        name="recurrent"
-                        value="reoccuring"
-                        onChange={handleReoccuring}
+                    Activer la réccurence?
+                    
+                </label>
+                    
+            
+
+                {isReoccuring ?
+                    <Occurence
+                        untilDate={untilDate}
+                        updateUntilDate={updateUntilDate}
+                        updateEventData={updateEventData}
                     />
-                    <label htmlFor="reoccuring">Récurrent</label>
-                </div>
-
-                {isReoccuring ? (
-                    <div className="divReoccur">
-                        <div htmlFor="frequence" className="divFrequence">
-                            <label htmlFor="frequence" className="labelFrequence">
-                                <b>Fréquence</b>
-                            </label>
-                            <div>
-
-                                {
-                                    frequency.map(f => (
-                                        <label htmlFor={f.value} key={f.key}>
-                                            <input
-                                                type="radio"
-                                                name="freq"
-                                                value={f.value}
-                                                onChange={(e) => updateEventData(e)}
-                                            />
-                                            {f.label}
-                                        </label>
-                                    ))
-                                }
-
-                            </div>
-                        </div>
-
-                        <div htmlFor="byWeekDay" className="divByWeekDay">
-                            <label htmlFor="byWeekDay" className="labelByWeekDay">
-                                <b>Jour de la semaine</b>
-                            </label>
-                            <div className="divWeekdayCheckbox">
-                                {
-                                    weekdays.map(day => (
-
-                                        <label htmlFor={day.value} key={day.key}>
-                                            <input type="checkbox" name="byweekday" value={day.value} />
-                                            {day.day}
-                                        </label>
-
-                                    ))
-                                }
-                            </div>
-
-                            <div htmlFor="endDate" className="divEndDate">
-                                <label htmlFor="endDate" className="labelEndDate">
-                                    <b>Date de fin</b>
-                                </label>
-                                <div>
-                                    <input type="date" name="endDate" value={untilDate} onChange={(e) => updateUntilDate(e)} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ) : null}
+                    : null}
 
                 <div className="containerButtons">
                     <button className="buttonValidate" type="submit">

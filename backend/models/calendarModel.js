@@ -32,6 +32,7 @@ const validateReoccurence = (event) => {
                 if (rules.byweekday.length > 7){
                     throw new ValidationError(`Too many weekdays specified in array.`, 400);
                 }
+                if (rules.byweekday.length == 0) delete rules.byweekday;
             }
             break;
         case "monthly":
@@ -101,13 +102,25 @@ export default class CalendarModel {
     }
 
 
-    async getAppointmentById(eventId) {
+    async getAppointmentById(userId, eventId) {
+
+        const users = this.db.data.users;
+        if (!users.hasOwnProperty(userId)) throw new ValidationError(`User not found`, 404);
+        
+
 
         if (eventId == null || isNaN(eventId)) {
             throw new ValidationError(`Invalid event ID "${eventId}".`, 400);
         }
         const events = this.db.data.events;
         if (!events.hasOwnProperty(eventId)) throw new ValidationError(`Event not found`, 404);
+
+        // Vérifie si l'utilisateur qui demande l'événement y est inscris ou est son propriétaire
+        const invited = events[eventId].extendedProps.invitedId;
+        if (!invited.includes(userId) && events[eventId].extendedProps.ownerId != userId){
+            throw new ValidationError("Update forbidden : user is neither owner of event nor invited to the event.", 403);
+        }
+
         const copy = JSON.parse(JSON.stringify(events[eventId]));
         return copy;
     }

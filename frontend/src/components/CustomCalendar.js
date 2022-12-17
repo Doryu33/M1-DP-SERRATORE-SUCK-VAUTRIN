@@ -8,7 +8,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import '../styles/customCalendar.css';
 import AddAppointment from './AddAppointment';
-import network from '../configs/axiosParams';
 import { UserContext } from '../contexts/UserContext';
 import ModifyAppointment from './ModifyAppointment';
 import { ThemeContext } from '../contexts/ThemeContext';
@@ -32,14 +31,20 @@ const CustomCalendar = () => {
     const [events, setEvents] = useState([]);
     const [targetedEvent, setTargetEvent] = useState(null);
 
+    const [timedOut, setTimedOut] = useState(false);
+
     /*
     const onEventAdded = (e) => {
         const api = calendarRef.current.getApi();
         api.addEvent(e);
     };*/
 
-    
+
+
+
     useEffect(() => {
+        const timer = setTimeout(() => setTimedOut(!timedOut), 10000);
+
         (async () => {
             try {
                 const res = await getAllEvents(user.id);
@@ -48,57 +53,9 @@ const CustomCalendar = () => {
                 console.log(err.response.data.error)
             }
         })();
-    }, [showAddAppointment, showModifyAppointment, user.id]);
 
-
-    const updateTargetedEvent = (e) =>{
-        const val = e.target.value;
-        const name = e.target.name;
-
-        let update;
-        
-            update = {
-                ...targetedEvent,
-                "extendedProps": {
-                    ...targetedEvent.extendedProps,
-                    [name] : val,
-                },
-                "rrule": {
-                    ...targetedEvent.rrule,
-                    [name] : val,
-                }
-            };
-        
-        setTargetEvent(update)
-    }
-
-
-    const updateEventInBackend = (e) =>{
-        e.preventDefault();
-
-        const update = async () => {
-            const response = await network.patch(`/calendar/${user.id}/${targetedEvent.id}/update`, 
-            {
-                ...targetedEvent,
-                start: startDate.toISOString(),
-                end: endDate.toISOString()
-            }
-            );
-            return response;
-        }
-
-        (async () => {
-           
-
-            try {
-                await update();
-                setShowModifyAppointment(false);
-            } catch (err) {
-                console.log(err.response.data.error)
-            }
-        })();
-    }
-
+        return () => clearTimeout(timer);
+    }, [showAddAppointment, showModifyAppointment, user.id, timedOut]);
 
 
 
@@ -129,12 +86,7 @@ const CustomCalendar = () => {
                     events={events}
                     eventClick={(e) => {
                         setShowModifyAppointment(false);
-                        setTargetEvent({
-                            extendedProps: e.event.extendedProps,
-                            title: e.event.title,
-                            backgroundColor: e.event.backgroundColor,
-                            id: e.event.id,
-                        });
+                        setTargetEvent(e.event.id);
                         setShowModifyAppointment(true);
                         setShowAddAppointment(false);
                     }}
@@ -148,15 +100,21 @@ const CustomCalendar = () => {
                     }}
                 />
             </div>
-            {showAddAppointment ? <AddAppointment startDate={startDate} endDate={endDate} setShowAddAppointment={setShowAddAppointment} /> : null}
+            {showAddAppointment ?
+                <AddAppointment
+                    startDate={startDate}
+                    endDate={endDate}
+                    setShowAddAppointment={setShowAddAppointment}
+                />
+                : null}
+
+
+
             {showModifyAppointment ? <ModifyAppointment
                 startDate={startDate}
                 endDate={endDate}
                 targetedEvent={targetedEvent}
-                setTargetEvent={setTargetEvent}
                 setShowModifyAppointment={setShowModifyAppointment}
-                handleForm={updateTargetedEvent}
-                updateBackend= {updateEventInBackend}
             /> : null}
         </div>
     );
