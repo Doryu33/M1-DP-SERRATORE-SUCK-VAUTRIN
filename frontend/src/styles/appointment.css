@@ -75,8 +75,8 @@
 .dark .inputDescription,
 .dark .inputDuration,
 .dark .inputType {
-    background-color: black;
-    color: white;
+    background-color: var(--dark-input-field-bg-color);
+    color: black;
 }
 
 .dark input[type='radio'] {
@@ -119,8 +119,8 @@
     background-color: #1c3879;
     color: white;
     border-radius: 0.25em;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 1vw;
+    margin-left: 1vw;
 }
 
 .dark .buttonValidate, .dark .buttonCancel, .dark.buttonDelete{
