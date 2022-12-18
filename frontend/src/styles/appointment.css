@@ -5,6 +5,8 @@
 }
 
 .container {
+    position: sticky;
+    top: 1px;
     display: flex;
     flex-direction: column;
     width: 21vw;
