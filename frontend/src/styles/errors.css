@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.errorsContainer li {
+    margin-left: 16px;
+}
+
 .errorsContainer h5{
     font-weight: 700;
 }

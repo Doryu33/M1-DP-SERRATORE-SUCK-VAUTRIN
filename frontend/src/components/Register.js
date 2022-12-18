@@ -9,6 +9,11 @@ import ErrorHandler from './ErrorHandler';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 const Register = () => {
+
+    function clearInput() {
+        document.getElementById("Form").reset();
+    }
+
     const { user } = useContext(UserContext);
     const { isDark } = useContext(ThemeContext);
     const navigate = useNavigate();
@@ -21,6 +26,7 @@ const Register = () => {
     }, [])
 
     const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
     const username = useRef("");
     const password = useRef("");
     const name = useRef("");
@@ -28,7 +34,8 @@ const Register = () => {
 
     const formHandler = () => (event) => {
         event.preventDefault();
-
+        setError(false);
+        setSuccess(false);
         (async () => {
             const data = {
                 username: username.current?.value,
@@ -49,10 +56,13 @@ const Register = () => {
 
             try {
                 const res = await sendForm(data);
-
+                setSuccess(true);
+                clearInput();
+                setError(false)
             } catch (err) {
                 console.log(err.response.data.error)
                 setError(err.response.data.error);
+                setSuccess(false);
             }
         })();
 
@@ -64,7 +74,7 @@ const Register = () => {
                 <title>S'enregistrer</title>
             </Helmet>
             <Navigation />
-            <form className={isDark ? "formRegister dark" : "formRegister"} onSubmit={formHandler()}>
+            <form id= "Form" className={isDark ? "formRegister dark" : "formRegister"} onSubmit={formHandler()}>
                 <div className="container">
                     <h1 className="titleRegister">Créer un compte</h1>
 
@@ -116,6 +126,14 @@ const Register = () => {
                         :
                         <></>
                     }
+
+                    {
+                        success ?
+                        <p className='success'>Compte crée avec succés</p>
+                        :
+                        <></>
+                    }
+
                 </div>
 
                 <div>

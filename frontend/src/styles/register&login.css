@@ -92,3 +92,7 @@
     cursor: pointer;
     background-color: #162d61;
 }
+
+.success{
+    align-self: center;
+}
