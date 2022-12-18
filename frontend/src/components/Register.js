@@ -58,7 +58,7 @@ const Register = () => {
                 const res = await sendForm(data);
                 setSuccess(true);
                 clearInput();
-                setError(false)
+                setError(false);
             } catch (err) {
                 console.log(err.response.data.error)
                 setError(err.response.data.error);
