@@ -105,11 +105,11 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
             });
             const bwd = data.rrule.byweekday ? data.rrule.byweekday : [];
             const chck = [];
-            weekdays.forEach((day) =>{
+            weekdays.forEach((day) => {
                 chck.push(bwd.includes(day.value));
             })
             setChecked(chck);
-            
+
         }
         setCurrentEvent(loaded);
     }
@@ -125,14 +125,14 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
                 start: startDate.toISOString(),
                 end: endDate.toISOString(),
                 backgroundColor: currentEvent.backgroundColor,
-                extendedProps : {
-                    description : currentEvent.description,
+                extendedProps: {
+                    description: currentEvent.description,
                     ownerId: currentEvent.ownerId,
                     invitedId: currentEvent.invitedId
                 }
             };
 
-            if (isReoccuring){
+            if (isReoccuring) {
                 data.rrule = {
                     byweekday: rules.byweekday,
                     freq: rules.freq,
@@ -220,19 +220,18 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
                     </div>
                 </div>
 
-                <label htmlFor="recurring" className="labelInfoAddAp">
+                <label className="labelInfoAddAp">
+                    <b>Récurrence</b>
+                </label>
+                <div>
                     <input
                         type="checkbox"
-                        name="recurring"
+                        name="reccuring"
                         className="inputType"
-                        checked={isReoccuring}
-                        onChange={() => {
-                            setReoccuring(!isReoccuring)
-                        }}
-                    />
-                    Activer la réccurence?
-
-                </label>
+                        value={isReoccuring}
+                        onChange={() => { setReoccuring(!isReoccuring) }}
+                    /> Activer la réccurence ?
+                </div>
 
                 {
                     isReoccuring ?

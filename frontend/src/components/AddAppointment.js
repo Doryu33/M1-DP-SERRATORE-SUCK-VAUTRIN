@@ -65,7 +65,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                     byweekday: formData.getAll('byweekday'),
                     dtstart: startDate
                 };
-            };            
+            };
 
 
             if ('rrule' in data && 'until' in data.rrule && data.rrule.until === "") delete data.rrule.until;
@@ -149,20 +149,16 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
                 <label className="labelInfoAddAp">
                     <b>Récurrence</b>
                 </label>
-
-                <label htmlFor="recurring" className="labelInfoAddAp">
-                <input
+                <div>
+                    <input
                         type="checkbox"
                         name="reccuring"
                         className="inputType"
                         value={isReoccuring}
-                        onChange={()=>{setReoccuring(!isReoccuring)}}
-                    />
-                    Activer la réccurence?
-                    
-                </label>
-                    
-            
+                        onChange={() => { setReoccuring(!isReoccuring) }}
+                    /> Activer la réccurence ?
+                </div>
+
 
                 {isReoccuring ?
                     <Occurence
