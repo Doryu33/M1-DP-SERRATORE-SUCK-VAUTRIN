@@ -1,5 +1,6 @@
 .dark.formAddAppointment {
-    background-color: rgb(26, 22, 22);
+    background-color: var(--dark-main-bg-color);
+    border: #95a5a6;
     color: white;
 }
 
@@ -7,6 +8,11 @@
     display: flex;
     flex-direction: column;
     width: 21vw;
+    border-left-style: double;
+    border-bottom-style: double;
+    border-top-style: double;
+    border-right-style: double;
+    margin-top: 8px;
 }
 
 
@@ -17,7 +23,7 @@
 }
 
 .dark .labelInfoAddAp {
-    color: #517ee6;
+    color: var(--dark-title-text-color);
 }
 
 .titleAddAppointment {
@@ -26,7 +32,7 @@
 }
 
 .dark .titleAddAppointment {
-    color: #517ee6;
+    color: var(--dark-title-text-color);
 }
 
 .divReoccur {
@@ -113,6 +119,10 @@
     border-radius: 0.25em;
     margin-right: 20px;
     margin-left: 20px;
+}
+
+.dark .buttonValidate, .dark .buttonCancel, .dark.buttonDelete{
+    background-color: var(--dark-button-color);
 }
 
 .buttonDelete {

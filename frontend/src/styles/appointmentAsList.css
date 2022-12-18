@@ -1,20 +1,20 @@
 .titleAndDescriAppList {
     border: solid 1px;
     border-radius: 8px;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: 15px;
-    width: 600px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: 16px;
+    width: 60vw;
     background-color: rgba(138, 228, 116, 0.5);
-    margin-right: 10px;
+    margin-right: 16px;
 }
 
 .dark .titleAndDescriAppList {
-    background-color: rgba(48, 81, 40, 0.5);
+    background-color: #50577A;
 }
 
 .dark.list {
-    background-color: rgb(26, 22, 22);
+    background-color: var(--dark-main-bg-color);
     color: white;
 }
 
@@ -40,7 +40,7 @@
 .dark .dateSubtitle,
 .dark .timeSubtitle,
 .dark .globalTitleAllApp{
-    color: #2b56b9;
+    color: var(--dark-title-text-color);
 }
 
 .timeSubtitle{
@@ -65,7 +65,7 @@
 .dark .containerAppList,
 .dark .containerButtons,
 .dark .containerAppointment {
-    color: rgb(255, 255, 255);
+    color: white;
 }
 
 
@@ -75,8 +75,10 @@
 }
 
 .containerAppList {
-    margin-left: 30px;
+    margin-right: 32px;
+    margin-left: 32px;
 }
+
 
 .buttonAppList {
     margin-right: 10px;
@@ -90,7 +92,7 @@
 }
 
 .dark .buttonAppList {
-    background-color: #2b56b9;
+    background-color: var(--dark-button-color);
     color: white;
 }
 

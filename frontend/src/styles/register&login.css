@@ -8,7 +8,7 @@
 
 .dark.formLogin,
 .dark.formRegister {
-    background-color: rgb(26, 22, 22);
+    background-color: var(--dark-main-bg-color);
     color: white;
 }
 
@@ -30,14 +30,14 @@
 .dark .titleLogin,
 .dark .pAlreadyAccount,
 .dark .pNoAccount {
-    color: #3367e0;
+    color: var(--dark-title-text-color);
 }
 .labelInfo {
     color: #1C3879;
 }
 
 .dark .labelInfo {
-    color: #3367e0;
+    color: var(--dark-title-text-color);
 }
 
 .loginRedirection:visited,
@@ -52,7 +52,7 @@
 
 .dark .loginRedirection:hover,
 .dark .registerRedirection:hover {
-    color: #2b56b9;
+    color: white;
 }
 
 
@@ -81,6 +81,10 @@
     background-color: #1c3879;
     color: white;
     border-radius: 0.25em;
+}
+
+.dark .buttonLogin, .buttonRegister {
+    background-color: var(--dark-button-color);
 }
 
 .buttonRegister:hover,

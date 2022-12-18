@@ -1,7 +1,19 @@
+:root{
+  --dark-main-bg-color: #282A3A;
+  --dark-nav-bg-color: #1B2430;
+  --dark-active-day-color: #818181;
+  --dark-title-text-color: #e3ceb9;
+  --dark-text-color: white;
+  --dark-button-color: #24355d;
+}
+
 .App {
   text-align: center;
 }
 
+.dark {
+  background-color: var(--dark-main-bg-color);
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
 }

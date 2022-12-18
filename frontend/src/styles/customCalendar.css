@@ -1,3 +1,5 @@
+
+
 .CustomCalendar{
     max-width: 100vw;
     max-height: 100vw;
@@ -6,7 +8,7 @@
 }
 
 .dark .CustomCalendar {
-    background-color: rgb(26, 22, 22);
+    background-color: var(--dark-main-bg-color);
     color: white;
 }
 
@@ -22,3 +24,30 @@ h2{
 .MainContainer{
     display: flex;
  }
+
+ .dark .fc .fc-daygrid-day.fc-day-today{
+    background-color: var(--dark-active-day-color);
+ }
+
+ .dark .fc .fc-toolbar-title{
+    color: var(--dark-title-text-color);
+ }
+
+.dark .fc .fc-col-header-cell-cushion{
+    color: var(--dark-title-text-color);
+    font-weight: bolder;
+}
+
+.dark .fc .fc-button:not(:disabled){
+    background-image: none;
+    background-color: var(--dark-button-color);
+    color: white;
+}
+
+.dark .fc .fc-timegrid-axis-cushion{
+    color: var(--dark-title-text-color);
+}
+
+.fc .fc-timegrid-axis-cushion{
+    max-width: 72px;
+}
