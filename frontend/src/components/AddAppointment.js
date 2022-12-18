@@ -39,7 +39,7 @@ const AddAppointment = ({ startDate, endDate, setShowAddAppointment }) => {
             ...event,
             [name]: val,
         };
-        console.log(event)
+
         setvalueevent(updatedForm);
     };
 

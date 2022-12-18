@@ -97,6 +97,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
             invitedId: data.extendedProps.invitedId,
         }
         if ("rrule" in data) {
+
             setRules({
                 byweekday: data.rrule.byweekday ? data.rrule.byweekday : [],
                 freq: data.rrule.freq,

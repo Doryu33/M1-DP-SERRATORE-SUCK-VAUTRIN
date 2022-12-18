@@ -62,7 +62,9 @@ const AllAppointments = () => {
                             start={event.start}
                             end={event.end}
                             description={event.extendedProps.description}
+                            frequency={event?.rrule?.freq}
                             requestDeletion={requestDeletion} />
+
                     ))
                 }
 

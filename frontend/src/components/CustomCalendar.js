@@ -71,6 +71,7 @@ const CustomCalendar = () => {
                     locale={frLocale}
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, rrulePlugin]}
                     initialView="dayGridMonth"
+                    timeZone='UTC'
                     headerToolbar={{
                         center: 'timeGridDay,timeGridWeek,dayGridMonth new',
                     }}

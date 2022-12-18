@@ -55,6 +55,7 @@ export default class CalendarModel {
 
 
     async addAppointment(userId, appointment) {
+        await this.db.read();
         const users = this.db.data.users;
         if (userId == null || isNaN(userId) || !users.hasOwnProperty(userId)) {
             throw new ValidationError(`User not found or invalid user ID "${userId}".`, 404);
@@ -83,7 +84,6 @@ export default class CalendarModel {
         appointments[appointment.id] = Object.assign(base, appointment);
         appointments[appointment.id].extendedProps = extension;
         await this.db.write()
-        await this.db.read();
     }
 
     /**
@@ -92,6 +92,7 @@ export default class CalendarModel {
      * @returns Array de rendez-vous
      */
     async getAllAppointments(userId) {
+        await this.db.read();
         const users = this.db.data.users;
         if (userId == null || isNaN(userId) || !users.hasOwnProperty(userId)) {
             throw new ValidationError(`User not found or invalid user ID "${userId}".`, 400);
@@ -104,7 +105,7 @@ export default class CalendarModel {
 
 
     async getAppointmentById(userId, eventId) {
-
+        await this.db.read();
         const users = this.db.data.users;
         if (!users.hasOwnProperty(userId)) throw new ValidationError(`User not found`, 404);
         
@@ -128,7 +129,7 @@ export default class CalendarModel {
 
 
     async updateAppointment(userId, eventId, appointment) {
-
+        await this.db.read();
         const events = this.db.data.events;
         const users = this.db.data.users;
 
@@ -147,7 +148,6 @@ export default class CalendarModel {
         events[eventId] = Object.assign(events[eventId], appointment);
         events[appointment.id].extendedProps = extension;
         await this.db.write()
-        await this.db.read();
     }
 
 
@@ -157,6 +157,7 @@ export default class CalendarModel {
      * @param {*} eventId 
      */
     async deleteEvent(userId, eventId) {
+        await this.db.read();
         const user = this.db.data.users[userId];
         if (!user) throw new ValidationError(`User ${userId} not found`, 404);
         const event = this.db.data.events[eventId];
@@ -164,6 +165,5 @@ export default class CalendarModel {
         if (event.extendedProps.hasOwnProperty("ownerId") && event.extendedProps.ownerId !== userId) throw new ValidationError(`User ${userId} is not allow to delete event ${eventId}`, 403);
         delete this.db.data.events[eventId];
         await this.db.write();
-        await this.db.read();
     }
 }

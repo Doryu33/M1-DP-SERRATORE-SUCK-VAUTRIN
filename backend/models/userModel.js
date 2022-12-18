@@ -29,6 +29,7 @@ export default class UserModel {
      * @returns {int} identifiant unique généré pour cet utilisateur
      */
     async addUser(user) {
+        await this.db.read();
         const users = this.db.data.users;
         registerValidation(user);
 
@@ -39,7 +40,6 @@ export default class UserModel {
         users[newId] = Object.assign(base, user);
         users[newId].id = newId;
         await this.db.write();
-        await this.db.read();
         return newId;
     }
 
@@ -49,6 +49,7 @@ export default class UserModel {
      * @returns {Object} Données utilisateurs
      */
     async getUserById(userId) {
+        await this.db.read();
         const users = this.db.data.users;
         if (!users.hasOwnProperty(userId)) throw new ValidationError(`User with id "${userId}" not found`, 404);
         const copy = JSON.parse(JSON.stringify(users[userId]));
@@ -62,13 +63,13 @@ export default class UserModel {
      * @param {*} newUserData 
      */
     async updateUser(userId, newUserData) {
+        await this.db.read();
         const users = this.db.data.users;
         if (!users[userId]) throw new ValidationError(`UserId ${userId} not found`, 404);
 
         Object.assign(users[userId], newUserData);
 
         await this.db.write();
-        await this.db.read();
     }
 
     /**
@@ -79,6 +80,7 @@ export default class UserModel {
      * @throws Error user not recognized
      */
     async findUserByLoginAndPassword(login, password) {
+        await this.db.read();
         const users = this.db.data.users;
         const usersArray = Object.values(users);
         const loggedInUser = usersArray.filter(user => user.username === login && user?.password === password);

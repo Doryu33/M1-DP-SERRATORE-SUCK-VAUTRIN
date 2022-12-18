@@ -24,6 +24,7 @@ export async function initialize(){
     }catch (err){
         db.data = { users: {}, events: {} };
         await db.write();
+        await db.read();
     }
     
     return db;
