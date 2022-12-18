@@ -280,7 +280,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
 
                                                         <label htmlFor={day.value} key={day.key}>
                                                             <input type="checkbox" name="byweekday" value={day.value} checked={checked[index]}
-                                                                onChange={(e) => handleCheckboxes(e, index)} />
+                                                                onChange={() => handleCheckboxes(index)} />
                                                             {day.day}
                                                         </label>
 

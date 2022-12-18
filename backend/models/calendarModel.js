@@ -119,7 +119,7 @@ export default class CalendarModel {
         // Vérifie si l'utilisateur qui demande l'événement y est inscris ou est son propriétaire
         const invited = events[eventId].extendedProps.invitedId;
         if (!invited.includes(userId) && events[eventId].extendedProps.ownerId != userId){
-            throw new ValidationError("Update forbidden : user is neither owner of event nor invited to the event.", 403);
+            throw new ValidationError("Forbidden : user is neither owner of event nor invited to the event.", 403);
         }
 
         const copy = JSON.parse(JSON.stringify(events[eventId]));
