@@ -139,13 +139,19 @@
     "8697770023": {
       "id": "8697770023",
       "title": "test",
-      "start": "2022-12-15T23:00:00.000Z",
-      "end": "2022-12-16T23:00:00.000Z",
+      "start": "2022-12-16T23:00:00.000Z",
+      "end": "2022-12-17T23:00:00.000Z",
       "backgroundColor": "#ff0000",
       "extendedProps": {
         "description": "teeest",
         "ownerId": "122134106804",
         "invitedId": []
+      },
+      "rrule": {
+        "freq": "daily",
+        "dtstart": "2022-12-16T23:00:00.000Z",
+        "until": "",
+        "interval": 1
       }
     },
     "6955176829": {
@@ -194,18 +200,6 @@
         "dtstart": "2022-12-23T23:00:00.000Z",
         "until": "2022-12-31T23:00:00.000Z",
         "interval": 1
-      }
-    },
-    "8250673477": {
-      "id": "8250673477",
-      "title": "Noël",
-      "start": "2022-12-24T23:00:00.000Z",
-      "end": "2022-12-25T23:00:00.000Z",
-      "backgroundColor": "#ff0000",
-      "extendedProps": {
-        "description": "Jour de noël",
-        "ownerId": "9831783261",
-        "invitedId": []
       }
     }
   }
