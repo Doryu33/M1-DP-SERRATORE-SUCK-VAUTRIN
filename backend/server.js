@@ -31,8 +31,8 @@ app.use(express.json());
 
 // Exemple de Middleware : une requête URL avec '.../users/...' sera traité par le routeur userRouteur. 
 // userRouteur traite la partie entre crochets pour déterminer quoi répondre : .../users/[...]
-app.use('/users', userRouter);
-app.use('/calendar', calendarRouter);
+app.use('/api/users', userRouter);
+app.use('/api/calendar', calendarRouter);
 app.use('*', wrongRouteHandler);
 
 // Gestion des erreurs 
