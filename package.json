@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/AlexandreSerr/M1-DP-SERRATORE-SUCK-VAUTRIN#readme",
   "dependencies": {
-    "@fullcalendar/rrule": "^5.11.3",
     "concurrently": "^7.5.0"
   }
 }
