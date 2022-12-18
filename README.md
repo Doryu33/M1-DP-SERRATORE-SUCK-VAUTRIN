@@ -1,5 +1,7 @@
 # M1-DP-SERRATORE-SUCK-VAUTRIN
 
+## Projet "Design Patterns" 18/12/2022 FST Nancy
+
 ### Installation
 1. Se placer à la racine du projet et éxécuter: ```npm install```
 2. Lancer le serveur: ```npm start```
