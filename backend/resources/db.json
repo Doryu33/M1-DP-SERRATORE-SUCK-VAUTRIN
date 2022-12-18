@@ -71,6 +71,14 @@
       "email": "om@fe.fr",
       "name": "gui",
       "preferences": []
+    },
+    "9831783261": {
+      "id": "9831783261",
+      "username": "Jweb",
+      "password": "jean54",
+      "email": "jean_du_web@gmail.com",
+      "name": "Jean",
+      "preferences": []
     }
   },
   "events": {
@@ -110,8 +118,8 @@
     "9601072269": {
       "id": "9601072269",
       "title": "test",
-      "start": "2022-12-12T23:00:00.000Z",
-      "end": "2022-12-13T23:00:00.000Z",
+      "start": "2022-12-22T23:00:00.000Z",
+      "end": "2022-12-23T23:00:00.000Z",
       "backgroundColor": "#00cc00",
       "extendedProps": {
         "description": "test",
@@ -123,8 +131,8 @@
           "mo"
         ],
         "freq": "daily",
-        "dtstart": "2022-12-12T23:00:00.000Z",
-        "until": "",
+        "dtstart": "2022-12-22T23:00:00.000Z",
+        "until": "2022-12-19",
         "interval": 1
       }
     },
@@ -137,6 +145,66 @@
       "extendedProps": {
         "description": "teeest",
         "ownerId": "122134106804",
+        "invitedId": []
+      }
+    },
+    "6955176829": {
+      "id": "6955176829",
+      "title": "retest",
+      "start": "2022-12-01T23:00:00.000Z",
+      "end": "2022-12-02T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "restest",
+        "ownerId": "122134106804",
+        "invitedId": []
+      }
+    },
+    "8379092973": {
+      "id": "8379092973",
+      "title": "restesuntil",
+      "start": "2022-12-22T23:00:00.000Z",
+      "end": "2022-12-23T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "",
+        "ownerId": "122134106804",
+        "invitedId": []
+      },
+      "rrule": {
+        "until": "2022-12-20",
+        "freq": "daily",
+        "dtstart": "2022-12-22T23:00:00.000Z",
+        "interval": 1
+      }
+    },
+    "9658896250": {
+      "id": "9658896250",
+      "title": "Jour de fête",
+      "start": "2022-12-23T23:00:00.000Z",
+      "end": "2022-12-24T23:00:00.000Z",
+      "backgroundColor": "#00cc00",
+      "extendedProps": {
+        "description": "",
+        "ownerId": "9831783261",
+        "invitedId": []
+      },
+      "rrule": {
+        "freq": "daily",
+        "dtstart": "2022-12-23T23:00:00.000Z",
+        "until": "2022-12-31T23:00:00.000Z",
+        "interval": 1
+      }
+    },
+    "8250673477": {
+      "id": "8250673477",
+      "title": "Noël",
+      "start": "2022-12-24T23:00:00.000Z",
+      "end": "2022-12-25T23:00:00.000Z",
+      "backgroundColor": "#ff0000",
+      "extendedProps": {
+        "description": "Jour de noël",
+        "ownerId": "9831783261",
         "invitedId": []
       }
     }

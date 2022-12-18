@@ -38,7 +38,8 @@ export default class UserModel {
         const base = baseUser();
         users[newId] = Object.assign(base, user);
         users[newId].id = newId;
-        await this.db.write()
+        await this.db.write();
+        await this.db.read();
         return newId;
     }
 
@@ -49,7 +50,7 @@ export default class UserModel {
      */
     async getUserById(userId) {
         const users = this.db.data.users;
-        if (!users.hasOwnProperty(userId)) throw new ValidationError(`User with ${userId} not found`, 404);
+        if (!users.hasOwnProperty(userId)) throw new ValidationError(`User with id "${userId}" not found`, 404);
         const copy = JSON.parse(JSON.stringify(users[userId]));
         delete copy.password;
         return copy;
@@ -67,6 +68,7 @@ export default class UserModel {
         Object.assign(users[userId], newUserData);
 
         await this.db.write();
+        await this.db.read();
     }
 
     /**

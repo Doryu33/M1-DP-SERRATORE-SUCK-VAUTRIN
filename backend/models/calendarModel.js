@@ -83,6 +83,7 @@ export default class CalendarModel {
         appointments[appointment.id] = Object.assign(base, appointment);
         appointments[appointment.id].extendedProps = extension;
         await this.db.write()
+        await this.db.read();
     }
 
     /**
@@ -146,6 +147,7 @@ export default class CalendarModel {
         events[eventId] = Object.assign(events[eventId], appointment);
         events[appointment.id].extendedProps = extension;
         await this.db.write()
+        await this.db.read();
     }
 
 
@@ -162,5 +164,6 @@ export default class CalendarModel {
         if (event.extendedProps.hasOwnProperty("ownerId") && event.extendedProps.ownerId !== userId) throw new ValidationError(`User ${userId} is not allow to delete event ${eventId}`, 403);
         delete this.db.data.events[eventId];
         await this.db.write();
+        await this.db.read();
     }
 }

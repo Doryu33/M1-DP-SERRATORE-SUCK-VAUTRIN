@@ -42,7 +42,6 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
         const val = e.target.value;
         const name = e.target.name;
 
-
         const updatedForm = {
             ...rules,
             [name]: val,
@@ -299,7 +298,7 @@ const ModifyAppointment = ({ startDate, endDate, setShowModifyAppointment, targe
                                             <b>Date de fin</b>
                                         </label>
                                         <div>
-                                            <input type="date" name="endDate" value={rules.until} onChange={(e) => updateRules(e)} />
+                                            <input type="date" name="until" value={rules.until} onChange={(e) => updateRules(e)} />
                                         </div>
                                     </div>
                                 </div>
