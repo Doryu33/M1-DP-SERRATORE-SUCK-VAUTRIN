@@ -12,3 +12,6 @@ Un compte de base est fourni:
 - Mot de passe: ```dp```
 
 Il est possible de créer d'autre compte en utilisant le bouton "S'enregistrer".
+
+La documentation est présente à ce lien:
+https://documenter.getpostman.com/view/24975159/2s8YzZPJoK
